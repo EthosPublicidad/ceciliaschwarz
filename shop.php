@@ -10,6 +10,32 @@
         include("include/head.php");
       ?>
   </head>
+  <?php 
+	session_start();
+	require_once "./gestion/Objetos/GestionProducto.php"; 
+	require_once "./gestion/Objetos/GestionCategoria.php"; 
+	$gestionproducto=new GestionProducto();
+	$gestioncategoria = new GestionCategoria();
+	$tendencias = $gestionproducto->traerTendencias();
+	$_REQUEST['id'] = 'TODO';
+	if(!empty($_REQUEST['id'])){	
+		$productos = $gestionproducto->traerPorCategoria($_REQUEST['id']);	
+		if($_REQUEST['id']!="TODO"){	
+			$categ = $gestioncategoria->get('categoria', $_REQUEST['id'])[0];
+		}else{
+			$categ = array("descripcion"=>"Todos los productos");
+		}
+	}else{
+		header('Location: ./index.php');
+	}
+
+	if(empty($_REQUEST['vista'])){
+		$vista = 'grid';
+	}else{
+		$vista = $_REQUEST['vista'];
+	}
+	print_r($productos);
+?>
   <body>
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
