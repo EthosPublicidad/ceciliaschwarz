@@ -34,7 +34,10 @@
 	}else{
 		$vista = $_REQUEST['vista'];
 	}
-	print_r($productos);
+	//print_r($productos);
+	//foreach ($productos as $tmp){
+	//	echo $tmp['id'];
+	//}
 ?>
   <body>
     <!--[if lt IE 8]>
@@ -111,9 +114,14 @@
           <div id="ro-shop-tab" class="tab-content">
             <div id="ro-shop-spa" class="tab-pane fade">
               <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
+			  <?php
+			    $count = 1;
+			    foreach ($productos as $tmp){ 
+				   if ($tmp['categoria'] == 'SPA'){
+				?>				
+				<div class="col-md-3 col-sm-6 col-xs-12">
                   <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab1.jpg" alt="product"/>
+                    <div class="ro-image"><img src=<?php echo 'img/productos/'.$tmp['id'].'/'.$tmp['foto1'];?> alt="product"/>
                       <div class="ro-overlay">
                         <div class="ro-overlay-inner ro-cell-vertical-wrapper">
                           <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
@@ -121,408 +129,98 @@
                       </div>
                     </div>
                     <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+                        <h5><?php echo $tmp['descripcion'];?></h5></a>
+                      <h3 class="ro-color-main"><?php 
+					  if ($tmp['destacado'] ==1){
+					      echo '<del>$'.$tmp['precio'].'</del>$'.($tmp['precio'] - ($tmp['precio']*($tmp['oferta']/100)));
+					  }else{
+						  echo '$'.$tmp['precio'];  
+					  }
+					  ?></h3>                      
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab2.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
+				<?php if ($count%4 == 0){ ?>
+					<div class="col-md-12 hidden-xs hidden-sm">
+                       <div class="ro-shoptab-separator"></div>
                     </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>HOLA MUNDO</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab3.jpg" alt="product"/>
-                      <div class="ro-selloff">- 20%</div>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a>
-							<input class='icon-basic-eye' type='button'  value=' Anadir / Detalles' onclick='detalle' data-toggle='modal' data-target='#modal'> 
-							 </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">
-                        <del>$64</del>$80
-                      </h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab4.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12 hidden-xs hidden-sm">
-                  <div class="ro-shoptab-separator"></div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab5.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab6.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab7.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab8.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
+				<?php }
+				 $count++;
+				   }} ?>
               </div>
             </div>
             <div id="ro-shop-beauty" class="tab-pane fade active in">
               <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <?php
+			    $count = 1;
+			    foreach ($productos as $tmp){ 
+				   if ($tmp['categoria'] == 'FACIAL'){
+				?>				
+				<div class="col-md-3 col-sm-6 col-xs-12">
                   <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab1.jpg" alt="product"/>
+                    <div class="ro-image"><img src=<?php echo 'img/productos/'.$tmp['id'].'/'.$tmp['foto1'];?> alt="product"/>
                       <div class="ro-overlay">
                         <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
+                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
                         </div>
                       </div>
                     </div>
                     <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+                        <h5><?php echo $tmp['descripcion'];?></h5></a>
+                      <h3 class="ro-color-main"><?php 
+					  if ($tmp['destacado'] ==1){
+					      echo '<del>$'.$tmp['precio'].'</del>$'.($tmp['precio'] - ($tmp['precio']*($tmp['oferta']/100)));
+					  }else{
+						  echo '$'.$tmp['precio'];  
+					  }
+					  ?></h3>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab2.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
+				<?php if ($count%4 == 0){ ?>
+					<div class="col-md-12 hidden-xs hidden-sm">
+                       <div class="ro-shoptab-separator"></div>
                     </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab3.jpg" alt="product"/>
-                      <div class="ro-selloff">- 20%</div>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">
-                        <del>$64</del>$80
-                      </h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab4.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12 hidden-xs hidden-sm">
-                  <div class="ro-shoptab-separator"></div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab5.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab6.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab7.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab8.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
+				<?php }
+				 $count++;
+				   }} ?>
               </div>
             </div>
             <div id="ro-shop-yoga" class="tab-pane fade">
               <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <?php
+			    $count = 1;
+			    foreach ($productos as $tmp){ 
+				   if ($tmp['categoria'] == 'CUERPO'){
+				?>				
+				<div class="col-md-3 col-sm-6 col-xs-12">
                   <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab1.jpg" alt="product"/>
+                    <div class="ro-image"><img src=<?php echo 'img/productos/'.$tmp['id'].'/'.$tmp['foto1'];?> alt="product"/>
                       <div class="ro-overlay">
                         <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
+                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
                         </div>
                       </div>
                     </div>
                     <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+                        <h5><?php echo $tmp['descripcion'];?></h5></a>
+                      <h3 class="ro-color-main"><?php 
+					  if ($tmp['destacado'] ==1){
+					      echo '<del>$'.$tmp['precio'].'</del>$'.($tmp['precio'] - ($tmp['precio']*($tmp['oferta']/100)));
+					  }else{
+						  echo '$'.$tmp['precio'];  
+					  }
+					  ?></h3>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab2.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
+				<?php if ($count%4 == 0){ ?>
+					<div class="col-md-12 hidden-xs hidden-sm">
+                       <div class="ro-shoptab-separator"></div>
                     </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab3.jpg" alt="product"/>
-                      <div class="ro-selloff">- 20%</div>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">
-                        <del>$64</del>$80
-                      </h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab4.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12 hidden-xs hidden-sm">
-                  <div class="ro-shoptab-separator"></div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab5.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab6.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab7.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="ro-shop-tab-item">
-                    <div class="ro-image"><img src="assets/images/shoptab8.jpg" alt="product"/>
-                      <div class="ro-overlay">
-                        <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-heart"></i></a></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ro-content"><a href="product.html">
-                        <h5>BATH SALT BOX</h5></a>
-                      <h3 class="ro-color-main">$30</h3>
-                      <div data-rating="4" class="ro-rating"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-                    </div>
-                  </div>
-                </div>
+				<?php }
+				 $count++;
+				   }} ?>
               </div>
             </div>
           </div>

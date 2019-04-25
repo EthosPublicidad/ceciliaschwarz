@@ -64,18 +64,22 @@
 													<input name="stock" placeholder="Stock" type="number" min="0" class="form-control" />
 												</div>
 												<div class="col-md-6 col-sm-6 text-left">
-													<label>Es Destacado?</label>
+													<label>Tiene Oferta?</label>
 													<select name="destacado" class="form-control">
 														<option value="0">NO</option>
 														<option value="1">SI</option>
 													</select>
 												</div>
-												<div class="col-md-6 col-sm-6 text-left">
+												<!--<div class="col-md-6 col-sm-6 text-left">
 													<label>Es Tendecia?</label>
 													<select name="tendencia" class="form-control">
 														<option value="0">NO</option>
 														<option value="1">SI</option>
 													</select>
+												</div>-->
+												<div class="col-md-6 col-sm-6 text-left">
+													<label>Oferta</label>
+													<input name="oferta" placeholder="0%" class="form-control" required="required" />
 												</div>
 												<div class="col-md-12 text-left">
 													<label>Informaci&oacute;n Detallada</label>
@@ -132,7 +136,7 @@
 												}else{
 													$info = rawurlencode($reg['infodetallada']);
 													echo "<td>
-														<button title='Editar' class='btn btn-success' onclick='editar(\"$reg[descripcion]\", $reg[precio], \"$reg[idcategoria]\", \"$reg[foto1]\", \"$reg[foto2]\", \"$reg[foto3]\", \"$reg[id]\", \"$reg[stock]\", \"$reg[destacado]\", \"$reg[tendencia]\", \"$info\");'><i class='fa fa-pencil'></i></button>
+														<button title='Editar' class='btn btn-success' onclick='editar(\"$reg[descripcion]\", $reg[precio], \"$reg[idcategoria]\", \"$reg[foto1]\", \"$reg[foto2]\", \"$reg[foto3]\", \"$reg[id]\", \"$reg[stock]\", \"$reg[destacado]\", \"$reg[tendencia]\", \"$reg[oferta]\", \"$info\");'><i class='fa fa-pencil'></i></button>
 														<a title='Borrar' class='btn btn-danger' href='./gestion.php?id=$reg[id]&opcion=bajaproducto'><i class='fa fa-times'></i></a>
 													</td>";
 												}
@@ -199,18 +203,22 @@
 								<input name="stock" id="stock" placeholder="Stock" type="number" min="0" class="form-control" />
 							</div>
 							<div class="col-md-6 col-sm-6 text-left">
-								<label>Es Destacado?</label>
+								<label>Tiene Oferta?</label>
 								<select name="destacado" id="destacado" class="form-control">
 									<option value="0">NO</option>
 									<option value="1">SI</option>
 								</select>
 							</div>
-							<div class="col-md-6 col-sm-6 text-left">
+							<!--<div class="col-md-6 col-sm-6 text-left">
 								<label>Es Tendecia?</label>
 								<select name="tendencia" id="tendencia" class="form-control">
 									<option value="0">NO</option>
 									<option value="1">SI</option>
 								</select>
+							</div>-->
+							<div class="col-md-6 col-sm-6 text-left">
+								<label>Oferta</label>
+								<input name="oferta" id="oferta" placeholder="0%" type="text" class="form-control" required="required" />
 							</div>
 							<div class="col-md-12 text-left">
 								<label>Informaci&oacute;n Detallada</label>
@@ -274,7 +282,7 @@
 				}
 			});
 		});
-		function editar(desc, precio, categoria, foto1, foto2,foto3,id, stock, destacado, tendencia, infodetallada){
+		function editar(desc, precio, categoria, foto1, foto2,foto3,id, stock, destacado, tendencia, oferta, infodetallada){
 			$('#modalEdicion').modal('show');
 
 			$('#descripcion').val(desc);
@@ -287,6 +295,7 @@
 			$('#stock').val(stock);
 			$('#destacado').val(destacado);
 			$('#tendencia').val(tendencia);
+			$('#oferta').val(oferta);
 			$('#infodetallada').val(decodeURIComponent(infodetallada));
 		}
 		</script>

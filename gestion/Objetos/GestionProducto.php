@@ -83,7 +83,7 @@ class GestionProducto extends Modelo
         return $productos; 
     } 
     
-    public function modificarProducto($id, $descripcion, $precio, $categoria, $foto1, $foto2, $foto3, $stock, $destacado, $tendencia, $infodetallada) 
+    public function modificarProducto($id, $descripcion, $precio, $categoria, $foto1, $foto2, $foto3, $stock, $destacado, $tendencia, $oferta, $infodetallada) 
     {
 		$sql ="	UPDATE 	productos 
 				SET  	descripcion = '$descripcion', 
@@ -95,7 +95,8 @@ class GestionProducto extends Modelo
 		$sql.="	categoria = '$categoria',
 				stock = $stock,
 				destacado = $destacado,
-				tendencia = $tendencia,
+				tendencia = 1,
+				oferta = $oferta,
 				infodetallada = '$infodetallada'
 			    WHERE id = $id";
 		$this->_db->query($sql);

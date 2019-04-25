@@ -153,7 +153,7 @@ switch ($opcion) {
 
 		$producto = new Producto($_REQUEST['descripcion'],$_REQUEST['precio'], 
 								 $_REQUEST['categoria'], $frontalname, $lateralname, $espaldaname, $_REQUEST['stock'], $_REQUEST['destacado'], 
-								 $_REQUEST['tendencia'], $_REQUEST['infodetallada']);
+								 $_REQUEST['tendencia'],$_REQUEST['oferta'], $_REQUEST['infodetallada']);
 		$msg = $producto->guardar();
 		
 		$_SESSION['msg'] = $msg;
@@ -188,7 +188,7 @@ switch ($opcion) {
 		$msg = $gestionproducto->modificarProducto( $_REQUEST['id'],$_REQUEST['descripcion'],$_REQUEST['precio'], 
 													$_REQUEST['categoria'], $frontalname, $lateralname, $espaldaname, 
 													$_REQUEST['stock'], $_REQUEST['destacado'], 
-													$_REQUEST['tendencia'], $_REQUEST['infodetallada']);
+													$_REQUEST['tendencia'], $_REQUEST['oferta'], $_REQUEST['infodetallada']);
 		$_SESSION['msg'] = $msg;
 		header('Location: ./productos.php');
 	break;
