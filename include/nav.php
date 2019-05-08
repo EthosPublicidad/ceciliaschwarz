@@ -19,7 +19,7 @@
 			  
 			  <div class="cart-content">
 				<a href="cart.html">
-              <div data-content="2" class="ro-cart"><i class="icon-ecommerce-cart-content"></i></div></a>
+              <div data-content=<?php if(!empty($_SESSION['pedido'])){echo count($_SESSION['pedido']);}else{echo "0";}?> class="ro-cart"><i class="icon-ecommerce-cart-content"></i></div></a>
 				  
 				  <div class="main-cart-box">
                  <div class="single-cart-box">

@@ -61,8 +61,8 @@
             </div>
             <div class="col-md-4 hidden-sm hidden-xs">
            
-            </div><a href="cart.html">
-              <div data-content="2" class="ro-cart"><i class="icon-ecommerce-cart-content"></i></div></a>
+            </div><a href="cart.php">
+              <div data-content=<?php if(!empty($_SESSION['pedido'])){echo count($_SESSION['pedido']);}else{echo "0";}?> class="ro-cart"><i class="icon-ecommerce-cart-content"></i></div></a>
           </div>
         </div>
       </div>
@@ -124,7 +124,7 @@
                     <div class="ro-image"><img src=<?php echo 'img/productos/'.$tmp['id'].'/'.$tmp['foto1'];?> alt="product"/>
                       <div class="ro-overlay">
                         <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
+                          <div class="ro-cell-middle"><a onclick='agregaralpedido(1,1);'><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
                         </div>
                       </div>
                     </div>
@@ -161,7 +161,7 @@
                     <div class="ro-image"><img src=<?php echo 'img/productos/'.$tmp['id'].'/'.$tmp['foto1'];?> alt="product"/>
                       <div class="ro-overlay">
                         <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
+                          <div class="ro-cell-middle"><a onclick=<?php echo 'agregaralpedido('.$tmp['id'].',1);'?>><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
                         </div>
                       </div>
                     </div>
@@ -198,7 +198,7 @@
                     <div class="ro-image"><img src=<?php echo 'img/productos/'.$tmp['id'].'/'.$tmp['foto1'];?> alt="product"/>
                       <div class="ro-overlay">
                         <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a href="cart.html"><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
+                          <div class="ro-cell-middle"><a onclick=<?php echo 'agregaralpedido('.$tmp['id'].',1);'?>><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
                         </div>
                       </div>
                     </div>
@@ -393,5 +393,69 @@
     <script src='assets/scripts/main.js'></script>
     <!-- endbuild -->
     <script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','UA-57387972-1');ga('send','pageview');</script>
+	<script>
+	function agregaralpedido(idproducto, cantidad){
+		$.post( './gestionpedido.php', { opcion: 'agregaralpedido', idproducto: idproducto, cantidad:cantidad  })
+			.done(function( data ) {
+				alert(data);					
+				if(data != "El producto ya se encuentra en la lista del pedido."){
+					window.location.reload();
+				}
+			});
+	}
+	function quitar(cont, idproducto){
+		$.post( './gestionpedido.php', { opcion: 'sacardelpedido', idproducto: idproducto })
+			.done(function( data ) {
+				alert(data);
+				$("#articulo"+cont).remove();
+			});
+	}
+
+	var total = 0;
+	$('document').ready(function(){
+		calcular();
+		$('input').blur(function(){
+			calcular();
+		});
+	});
+	$('input').blur(function(){
+		calcular();
+	});
+	function calcular(){
+		var subtotales = 0; 
+		for(var i = 0; i<total; i++){
+			var precio = $("#precio"+i).val();
+			var cantidad = $("#cantidad"+i).val()
+			var subtotal = precio * cantidad; 
+			subtotales = subtotales + subtotal;
+			$('#total'+i).html("$ "+subtotal);
+		}
+		$('#subtotales').html("$ "+subtotales);
+		$('#total').html("$ "+subtotales);
+		$('#totalfinal').val(subtotales);				
+	}
+	
+	function focusblur(idcantidad){
+		$('#'+idcantidad).focus();
+	}
+	$("#filtrar").click(function(){
+		var ch = 0;
+		$('.productos').addClass('hidden');
+		var clase = '';
+		$('input[type=checkbox]:checked').each(function () {
+			ch = 1;
+			if(clase==''){
+				clase = '.'+$(this).val();
+			}else{
+				clase = clase+', .'+$(this).val();
+			}
+		});
+		if(ch == 0){
+			$('.productos').removeClass('hidden');
+		}else{
+			$(clase).removeClass('hidden');				
+		}
+	});
+</script> 
   </body>
 </html>
