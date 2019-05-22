@@ -74,7 +74,7 @@
               <h3 class="ro-hr-heading ro-section-heading">BIENVENIDO</h3>
             </div>
             <div class="col-md-8 col-md-offset-2 text-center">
-              <p class="ro-section-mb"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est harum nobis, iusto labore, nihil illo magnam esse, accusamus culpa possimus a illum sequi qui error commodi perferendis cumque libero eius aut repellendus saepe omnis aliquam eligendi? Sint, iste repellat corrupti.
+              <p class="ro-section-mb"> Nuestro Spa logrará seducirlo con sus hermosas instalaciones, sus cálidos colores le brindaran un íntimo y cuidado ambiente para reponer energías luego de una jornada laboral extensa o de una recorrida por la ciudad. Un lugar ideal para disfrutar de un momento de relax y un descanso placentero.
 				</p>
             </div>
             <div class="col-md-4 col-xs-12">
@@ -113,7 +113,7 @@
             </div>
             <div class="ro-space-items ro-section-mb clearfix">
               <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="ro-space-img ro-center-block"><a href="#"><img src="assets/images/space7.jpg" alt="space image" class="img-responsive"/>
+                <div class="ro-space-img ro-center-block"><a href="#"><img src="assets/images/space8.jpg" alt="space image" class="img-responsive"/>
                     <div class="ro-overlay">
                       <div class="ro-space-overlay ro-cell-vertical-wrapper ro-bgc-trans-1 text-center">
                         <h5 class="ro-hr-heading ro-cell-middle">dressing room</h5>
@@ -129,7 +129,7 @@
                     </div></a></div>
               </div>
               <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="ro-space-img ro-center-block"><a href="#"><img src="assets/images/space8.jpg" alt="space image" class="img-responsive"/>
+                <div class="ro-space-img ro-center-block"><a href="#"><img src="assets/images/space5.jpg" alt="space image" class="img-responsive"/>
                     <div class="ro-overlay">
                       <div class="ro-space-overlay ro-cell-vertical-wrapper ro-bgc-trans-1 ro-space-overlay-sm-1 text-center">
                         <h5 class="ro-hr-heading ro-cell-middle">dressing room</h5>
@@ -137,7 +137,7 @@
                     </div></a></div>
               </div>
               <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="ro-space-img ro-center-block"><a href="#"><img src="assets/images/space5.jpg" alt="space image" class="img-responsive"/>
+                <div class="ro-space-img ro-center-block"><a href="#"><img src="assets/images/space7.jpg" alt="space image" class="img-responsive"/>
                     <div class="ro-overlay">
                       <div class="ro-space-overlay ro-cell-vertical-wrapper ro-bg-trans-light ro-space-overlay-sm-2 text-center">
                         <h5 class="ro-hr-heading ro-cell-middle">dressing room</h5>
