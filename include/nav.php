@@ -8,7 +8,7 @@
               <li><a href="index.php">HOME</a></li>
               <li><a href="nosotros.php">NOSOTROS</a></li>
               <li><a href="servicios.php">SERVICIOS</a></li>
-			<li><a href="afiliacion.php">AFILIACIÓN</a></li>
+			<!--<li><a href="afiliacion.php">AFILIACIÓN</a></li>-->
               <li><a href="shop.php">SHOP</a> </li>
               <!--<li><a href="blog-homepage.html">BLOG</a>
               </li>-->

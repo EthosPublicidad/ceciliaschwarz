@@ -60,8 +60,39 @@
             </div>
             <div class="col-md-4 hidden-sm hidden-xs">
            
-            </div><a href="cart.php">
+            </div>
+			  <div class="cart-content shop-content">
+				<a href="cart.html">
               <div data-content=<?php if(!empty($_SESSION['pedido'])){echo count($_SESSION['pedido']);}else{echo "0";}?> class="ro-cart"><i class="icon-ecommerce-cart-content"></i></div></a>
+				  
+				  <div class="main-cart-box main-cart-shop">
+                 <div class="single-cart-box">
+			      <div class="cart-img"> <img alt="" src="assets/images/car.jpg"> </div>
+					<div class="cart-content">
+						<h6 class="titlemenu"> Nombre del producto </h6>
+					 <span class="quantitys"> Cantidad: <span id="canti"> 1 
+						 -</span> </span>
+						<span> $999.14 </span>
+					 </div>
+					 <i class="zmdi zmdi-close"> </i>
+					 
+					 <div class="cart-footer fix">
+						 <h5> Total <span class="f-right">$<span id="subt"> 999.14</span> </span></h5>
+					 
+					 </div>
+					 
+					 <div class="cart-actions">
+						 <a href="checkout.html"> Comprar</a>
+						  <a href="cart.html"> Ver Carrito </a>
+					 
+					 </div>
+					  
+					  </div>
+					  
+					  
+                  </div>
+			  
+				  </div>
           </div>
         </div>
       </div>
@@ -123,7 +154,7 @@
                     <div class="ro-image"><img src=<?php echo 'img/productos/'.$tmp['id'].'/'.$tmp['foto1'];?> alt="product"/>
                       <div class="ro-overlay">
                         <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a onclick='agregaralpedido(1,1);'><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
+                          <div class="ro-cell-middle"><a onclick='agregaralpedido(1,1);'><i class="icon-ecommerce-cart"></i></a><a href="#modal"><i class="icon-basic-eye" data-toggle="modal" data-target="#modal"></i></a></div>
                         </div>
                       </div>
                     </div>
@@ -160,7 +191,7 @@
                     <div class="ro-image"><img src=<?php echo 'img/productos/'.$tmp['id'].'/'.$tmp['foto1'];?> alt="product"/>
                       <div class="ro-overlay">
                         <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a onclick=<?php echo 'agregaralpedido('.$tmp['id'].',1);'?>><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
+                          <div class="ro-cell-middle"><a onclick=<?php echo 'agregaralpedido('.$tmp['id'].',1);'?>><i class="icon-ecommerce-cart"></i></a><a href="#modal"><i class="icon-basic-eye" data-toggle="modal" data-target="#modal"></i></a></div>
                         </div>
                       </div>
                     </div>
@@ -197,7 +228,7 @@
                     <div class="ro-image"><img src=<?php echo 'img/productos/'.$tmp['id'].'/'.$tmp['foto1'];?> alt="product"/>
                       <div class="ro-overlay">
                         <div class="ro-overlay-inner ro-cell-vertical-wrapper">
-                          <div class="ro-cell-middle"><a onclick=<?php echo 'agregaralpedido('.$tmp['id'].',1);'?>><i class="icon-ecommerce-cart"></i></a><a href="#"><i class="icon-basic-eye"></i></a></div>
+                          <div class="ro-cell-middle"><a onclick=<?php echo 'agregaralpedido('.$tmp['id'].',1);'?>><i class="icon-ecommerce-cart"></i></a><a href="#modal"><i class="icon-basic-eye" data-toggle="modal" data-target="#modal"></i></a></div>
                         </div>
                       </div>
                     </div>
@@ -251,124 +282,60 @@
 							Producto
 						</h4>
 					</div>
-					<div class="modal-body">
-						<section id="slideshowdetalle">
-							<section id="slides">
-								<div id="productos">
-									<article id="fotomuestra">
-										<div class="Imagen-det">
-											<img id="zoom_01" src='' data-zoom-image="imag/small/image1.jpg"/>
-										</div>
-										<div class="imgmuestra">
-											<div>
-												<img onclick="cambiar(this.src);" id="img1" src="" alt="">
-											</div>
-											<div>
-												<img onclick="cambiar(this.src);" id="img2" src="" alt="">
-											</div>
-											<div>
-												<img onclick="cambiar(this.src);" id="img3" src="" alt="">
-											</div>
-										</div>
-									</article>
-									<article id="datos-product">
-										<div id="det-produt">
-											<h4 id="detalledesc">
-											</h4>
-											<section id="linea-t">
-												<i class="linea">
-												</i>
-											</section>
-											<div id="valores" class="detallevalores">
-												<h4 id="detalleprecviejo" class="precio">
-												</h4>
-												<h4 id="detalleprec" class="oferta">
-												</h4>
-											</div>
-											<section id="linea-b">
-												<i class="linea">
-												</i>
-											</section>
-											<div id="talles">
-												<h4>
-													SELECCIONE TALLE Y CANTIDAD.
-												</h4>
-												<div style="text-align: left; width: 100%;display: inline-block;">
-													<div class="col-md-3 col-sm-3">
-														<strong>Talle 4</strong> 
-														<input type="number" min="0" id="cantidad4" value="0" />												
-													</div>
-													<div class="col-md-3 col-sm-3">
-														<strong>Talle 5</strong> 
-														<input type="number" min="0" id="cantidad5" value="0" />												
-													</div>
-													<div class="col-md-3 col-sm-3">
-														<strong>Talle 6</strong> 
-														<input type="number" min="0" id="cantidad6" value="0" />												
-													</div>
-													<div class="col-md-3 col-sm-3">
-														<strong>Talle 7</strong> 
-														<input type="number" min="0" id="cantidad7" value="0" />												
-													</div>
-													<div class="col-md-3 col-sm-3">
-														<strong>Talle 8</strong> 
-														<input type="number" min="0" id="cantidad8" value="0" />												
-													</div>
-													<div class="col-md-3 col-sm-3">
-														<strong>Talle 9</strong> 
-														<input type="number" min="0" id="cantidad9" value="0" />												
-													</div>
-													<div class="col-md-3 col-sm-3">
-														<strong>Talle 10</strong> 
-														<input type="number" min="0" id="cantidad10" value="0" />												
-													</div>
-													<div class="col-md-3 col-sm-3">
-														<strong>Talle 12</strong> 
-														<input type="number" min="0" id="cantidad12" value="0" />												
-													</div>
-												</div>
-											</div>
-											<div class="input">
-												<input class="" type="submit" value="Lo Quiero!" onclick="agregaralpedido();" data-dismiss="modal">
-												<input id="idproducto" type="hidden" value="">
-											</div>
-											
-											<section id="linea-t">
-												<i class="linea">
-												</i>
-											</section>
-												
-											<div class="refrencia">
-												<h5>
-													Referencia de talles
-												</h5>
-												<section id="linea-t">
-												<i class="linea">
-												</i>
-											</section>
-												<p style="font-size: 14px;">
-													<strong>Remeria:</strong>&nbsp; 4 (46)&nbsp; 5 (50) &nbsp;6 (54)&nbsp; 7 (58)&nbsp; 8 (62)&nbsp; 9 (66)&nbsp; 10 (70)&nbsp; 12 (74)</p>
-													
-													<section id="linea-t">
-												<i class="linea">
-												</i>
-											</section>
-													<p style="font-size: 14px;">
-													<strong>Pantalones:</strong>&nbsp; 4 (46)&nbsp; 5 (48)&nbsp; 6 (50), &nbsp; (52)&nbsp; 8 (54)&nbsp; 9 (56)&nbsp; 10 (58)&nbsp; 12 (60)
-												</p>
-												<section id="linea-t">
-												<i class="linea">
-												</i>
-											</section>
-											</div>
-										</div>
-									</article>
-									<article class="">
-									</article>
-								</div>
-							</section>
-						</section>
-					</div>
+		<div class="ro-section ro-white">
+        <div class="ro-product-page">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="ro-title">
+                  <h4></h4>
+                </div>
+              </div>
+            </div>
+            <div class="row ro-product-wrapper">
+              <div class="col-md-4 col-sm-9 col-xs-12">
+                <div class="ro-product-image">
+                  <div id="Ro_zoom_image" class="ro-image"><img src="assets/images/product-img-large.jpg" data-zoom-image="assets/images/product-img-large.jpg" alt="Product Item" class="ro-zoom-image-0"/></div>
+                  <div class="ro-footer clearfix"><a href="checkout.html">
+                      <div>COMPRAR</div></a><a href="cart.html">
+                      <div>+ CARRITO</div></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 col-sm-3 col-xs-12 ro-product-option-wrapper">
+                <div data-mcs-theme="minimal-dark" id="Ro_gallery_0" class="ro-product-option mCustomScrollbar"><a href="#" data-image="assets/images/product-img-large.jpg" data-zoom-image="assets/images/product-img-large.jpg"><img src="assets/images/product-img-small.jpg" alt="zoom image" class="ro-zoom-image-0"/></a><a href="#" data-image="assets/images/product-img-large2.jpg" data-zoom-image="assets/images/product-img-large2.jpg"><img src="assets/images/product-img-small2.jpg" alt="zoom image" class="ro-zoom-image-0"/></a><a href="#" data-image="assets/images/product-img-large3.jpg" data-zoom-image="assets/images/product-img-large3.jpg"><img src="assets/images/product-img-small3.jpg" alt="zoom image" class="ro-zoom-image-0"/></a></div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="ro-product-information">
+                  <div class="ro-head">
+                    <h4>HANDCRAFTED SOAP STONE</h4>
+                    <h2>$ 25.00</h2>
+                  </div>
+                  <form class="ro-body col-md-7 ">
+                    
+                    <div class="ro-quantity col-md-12">
+                      <div>
+                        <p>Cantidad:</p>
+                      </div>
+                      <div>
+                        <input type="number" name="quantity1" value="1"/>
+                      </div>
+                    </div>
+                   
+                  </form>
+                  <div class="col-md-7 col-xs-12 ro-footer">
+                    <h6>DESCRIPTION</h6>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+					
+					
 				</div>
 				<!-- /.modal-content -->
 			</div>

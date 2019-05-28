@@ -36,10 +36,6 @@
   padding: 0;
   list-style: none;
 }
-.slides{
- margin: 120px 0;
-}
-
 .flex-pauseplay span {
   text-transform: capitalize;
 }

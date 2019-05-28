@@ -1140,6 +1140,10 @@ ul {
   display: block;
   width: 100%;
   float: left; }
+
+.ro-white {
+	background:#FFF;
+}
   .ro-section .ro-section-mb {
     margin-bottom: 50px; }
   .ro-section .ro-section-mb-small {
@@ -1237,6 +1241,12 @@ ul {
 	    display: none;
 	    z-index: 999;
        }
+
+
+.main-cart-shop{
+	 border: 1px solid #c7c7c7;
+	 transform: translateY(-53px);
+	 }
 .cart-content{
 	  width: 10%; 
 	 
@@ -1269,6 +1279,12 @@ ul {
     float: left;
     padding: 0 15px 15px 0;
     width: 65%;
+}
+
+.shop-content{
+    
+    padding: 0;
+    
 }
 
 .titlemenu {
@@ -2153,7 +2169,10 @@ form  .form-row  input {
   padding-bottom: 30px; }
 
 .ro-section-main-header #ro-header-background-slider ul li img {
-  width: 100%; }
+  width: 100%; 
+margin-top: 120px;
+
+}
 
 
 
