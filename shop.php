@@ -53,10 +53,9 @@
             </div>
             <div class="col-md-4">
               <ul class="ro-nav text-center">
-                <li><a href="#">SPA</a></li>
-                <li><a href="#">CUERPO</a></li>
-                <li><a href="#">FACIAL</a></li>
-                
+                <li><a href="#ro-shop-spa" data-toggle="tab">SPA</a></li>
+            <li class="active"><a href="#ro-shop-beauty" data-toggle="tab">FACIAL</a></li>
+            <li><a href="#ro-shop-yoga" data-toggle="tab">CUERPO</a></li>
               </ul>
             </div>
             <div class="col-md-4 hidden-sm hidden-xs">

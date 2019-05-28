@@ -87,11 +87,10 @@ require_once "./gestion/Objetos/Gestion.php";
                       <tr>
                         <th class="ro-table-col-product text-center">Products</th>
                         <th class="ro-table-col-name"></th>
-                        <th class="ro-table-col-size text-center">Size</th>
-                        <th class="ro-table-col-color text-center">Color</th>
                         <th class="ro-table-col-price text-center">Price</th>
                         <th class="ro-table-col-qty text-center">Qty</th>
                         <th class="ro-table-col-total text-center">Total</th>
+						<th class="ro-table-col-total text-center">Eliminar</th>
                       </tr>
                     </thead>
 					<tbody>
@@ -115,17 +114,8 @@ require_once "./gestion/Objetos/Gestion.php";
 								<a href='product-detail.php'> $productocarrito[descripcion] </a> <br />
 								<p	class='cart-variant'>$productocarrito[categoria]</p>
 							</td>
-							<td class='text-center'>S</td>
-							<td class='ro-item-color text-center'>
-                          <label class='ro-type-1'>
-                            <input type='radio' name='item-1' value='color 1' checked='checked'/><span></span>
-                          </label>
-                          <label class='ro-type-2'>
-                            <input type='radio' name='item-1' value='color 2'/><span></span>
-                          </label>
-                          <label class='ro-type-3'>
-                            <input type='radio' name='item-1' value='color 3'/><span></span>
-                          </label>
+							
+							
                         </td>
 							<td data-label='Precio' class='price'>$ $precio</td>
 							<td data-label='Cantidad' class='text-center'>
@@ -137,6 +127,10 @@ require_once "./gestion/Objetos/Gestion.php";
 							<td data-label='Precio' class='price'>$ $subtotal</td>
 							<input type='hidden' value='$productocarrito[id]' id='idproducto$cont' name='idproducto$cont'>
 							<input type='hidden' value='$productocarrito[precio]' id='precio$cont' name='precio$cont'>
+							<td>
+								<a href='#' onclick='quitar($cont, $productocarrito[id])' class='cart__remove' title='Quitar'>X<i class='fa fa-times' aria-hidden='true'></i></a> 
+								
+							</td>
 						</tr>";
 						$cont++;
 					}

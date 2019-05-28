@@ -10,7 +10,6 @@ $gestionproducto = new GestionProducto();
 $gestion = new Gestion();
 
 $opcion = $_REQUEST['opcion'];
-
 switch ($opcion) {
     case 'mail':
         $html = "

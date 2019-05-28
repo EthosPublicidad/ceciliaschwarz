@@ -1,4 +1,13 @@
- 
+ <!-- The Modal -->
+								<div id="myModal" class="modal">
+
+								  <!-- Modal content -->
+								  <div class="modal-content">
+									<!--<span class="close">&times;</span>-->
+									<p>Gracias por Suscribirte!</p>
+								  </div>
+
+								</div>
 
 <footer class="ro-bg-dark ro-section">
         <div class="container">
@@ -6,8 +15,18 @@
             <div class="row">
               <div class="col-lg-3 col-md-4 col-sm-7 col-xs-12 ro-footer-item">
                 <h5>CONTACTOS</h5>
-                <p>info@ceciliaschwarz.com.ar /<br/>hello.domain.com<br/>123.645.87 / 028.299.024</p><a href="#" class="ro-btn-bd-1 hvr-radial-out">¿QUIERES SUSCRIBIRTE?</a>
+                <p>info@ceciliaschwarz.com.ar /<br/>hello.domain.com<br/>123.645.87 / 028.299.024</p>
+				<form 
+                                        method="post" action="MailChimpApi.php">
+				<input type="text" placeholder="Nombre, Email. " name="cadena" autocomplete="off" id="mc-email">
+                                            
+				<button id="mc-submit" class="ro-btn-bd-1 hvr-radial-out"> ¿QUIERES SUSCRIBIRTE? </button>
+				</form>
               </div>
+			  
+			  
+			  
+			  
               <div class="col-lg-2 col-md-4 col-sm-5 col-xs-12 ro-footer-item">
                 <h5>DIRECCIÓN</h5>
                 <p>1234 Recoleta<br/> PA 12457</p><br class="hidden-xs"/><a href="#" class="ro-btn-bd-1 hvr-radial-out"> SHOP </a>
