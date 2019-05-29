@@ -70,14 +70,14 @@
                         <div class="ro-separator"> </div>
                         <div class="ro-price">$78</div>
 						  
-						  <div class="acordeon_contenido-ser"> 
-							  
-							  <label for="iten1" class="acordeons_titulo"><p>
-Revitalización facial + drenaje facial con gua-sha de jade 30 min descontracturante · Masaje 30 min + Aromaterapia · Drenaje linfático en piernas </p>
-								 
-								 <button value="Login" class="abtn2" type="button">Reservar</button>
-							  </label>
-						  </div>
+          						  <div class="acordeon_contenido-ser"> 
+          							  
+          							  <label for="iten1" class="acordeons_titulo"><p>
+          Revitalización facial + drenaje facial con gua-sha de jade 30 min descontracturante · Masaje 30 min + Aromaterapia · Drenaje linfático en piernas </p>
+                          </label>
+          								 
+          								 <button value="Login" class="abtn2" type="button">Reservar</button>
+          						  </div>
 						  
 						  
                       </li>
@@ -280,23 +280,41 @@ Revitalización facial + drenaje facial con gua-sha de jade 30 min descontractur
 	  	  
 	<!-- Acordion Servicio-->
 	  <script type="text/javascript"> 
-		  
-	  $(".ro-service").click(function(){
-		
-   var contenido=$(this).next(".acordeon_contenido-ser");
-			
-   if(contenido.css("display")=="none"){ //open		
-      contenido.slideDown(350);			
-      $(this).addClass("open");
-   }
-   else{ //close		
-      contenido.slideUp(350);
-      $(this).removeClass("open");	
-  }
-							
-});
 
-	  
+      var servicio;
+
+        $(".ro-service").click(function(){
+
+          var contenido = $(this).nextAll('.acordeon_contenido-ser');
+          servicio = $(this).html();
+              
+          if(contenido.css("display") == "none") { //open   
+            contenido.slideDown(350);     
+            $(this).addClass("open");
+          } else { //close    
+            contenido.slideUp(350);
+            $(this).removeClass("open");  
+          }
+
+        });
+
+        $('.abtn2').click(function() {
+
+          var form = $(document.createElement('form'));
+          $(form).attr("action", "reserva.php");
+          $(form).attr("method", "POST");
+          $(form).css("display", "none");
+
+          var servicioForm = $("<input>")
+          .attr("type", "text")
+          .attr("name", "servicio")
+          .val(servicio);
+          console.log(servicioForm);
+          $(form).append($(servicioForm));
+
+          form.appendTo(document.body);
+          $(form).submit();
+        });
 	  </script>
 	  
     <!-- endbuild -->

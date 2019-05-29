@@ -4,7 +4,7 @@ class Modelo
 
 	private $host = "localhost";
 	private $user = "root";
-	private $pass = "";
+	private $pass = "root";
 	private $bd = "bd_cecilia";
 
 	/* private $host = "localhost";

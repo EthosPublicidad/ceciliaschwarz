@@ -31,7 +31,16 @@
               <div class="col-xs-12 text-center ro-font-size-4 ro-light-text ro-section-mb opcion_reserva"><i>
                   Por favor reserve con anticipación para obtener el mejor servicio de nosotros.
 				   <br>Te deseamos un gran día. ¡Gracias!</i><br>
-				<p> Estas reservando: Full Body Massage (55 mins)</p>
+				<p> Estas reservando: 
+
+          <?php 
+            if (isset($_POST['servicio'])) {
+              $servicio = $_REQUEST['servicio']; 
+              echo $servicio;
+            }
+          ?>
+          
+        </p>
 				
 				</div>
               <div class="col-md-10 col-md-offset-1 col-xs-12 ro-section-mb-small">
