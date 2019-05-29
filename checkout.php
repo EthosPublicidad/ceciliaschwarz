@@ -208,7 +208,7 @@ if(empty($_REQUEST['idpedido'])){
 						echo "
 						
 						 <div class='ro-item ro-product-$cont'>
-                      <div class='ro-image'><a href='product-detail.php?id=$productocarrito[id]' class='cart__image'><img src='img/productos/$productocarrito[id]/$productocarrito[foto]' alt=''> </a></div>
+                      <div class='ro-image'><a href='product-detail.php?id=$productocarrito[id]' class='cart__image'><img src='img/productos/$productocarrito[id]/$productocarrito[foto]' alt='' style='max-width: 430px;'> </a></div>
                       <div>
                         <div class='ro-name'> <a href='product-detail.php'> $productocarrito[descripcion] </a></div>
                         <div class='ro-quantity'>

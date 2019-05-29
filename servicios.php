@@ -85,6 +85,14 @@
                         <div class="ro-service">Add on: Deep Tissue Massage (per area)</div>
                         <div class="ro-separator"></div>
                         <div class="ro-price">$25</div>
+                        <div class="acordeon_contenido-ser"> 
+                          
+                          <label for="iten1" class="acordeons_titulo"><p>
+          Revitalización facial + drenaje facial con gua-sha de jade 30 min descontracturante · Masaje 30 min + Aromaterapia · Drenaje linfático en piernas </p>
+                          </label>
+                           
+                           <button value="Login" class="abtn2" type="button">Reservar</button>
+                        </div>
                       </li>
                       <li>
                         <div class="ro-service">Hot Stone Massage (55 mins)</div>
