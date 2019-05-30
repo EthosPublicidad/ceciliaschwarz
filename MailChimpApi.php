@@ -15,10 +15,10 @@
 		$fname = str_replace($email, '',$cadena);
 		$fname = str_replace(',', '',$fname);
 		$fname = trim($fname);
-		$debug = isset($_POST["debug"])?$_POST["debug"]:0;
-		$apikey = '11dad96ab1ba0cf3f556ffb11f2b0f9c-us19';//Apikey
-		$listid = '9b36f8e202';//ID de Lista
-		$server = 'us19';
+		$debug = isset($_POST["debug"]) ? $_POST["debug"] : 0;
+		$apikey = 'e94b4a4b7ca8d11ea08404d8f5308367-us20';//Apikey
+		$listid = '622a6fd7ef';//ID de Lista
+		$server = 'us20';
 		$auth = base64_encode( 'user:'.$apikey );
 		$data = array(
 			'apikey'        => $apikey,

@@ -16,12 +16,6 @@
               <div class="col-lg-3 col-md-4 col-sm-7 col-xs-12 ro-footer-item">
                 <h5>CONTACTOS</h5>
                 <p>info@ceciliaschwarz.com.ar /<br/>hello.domain.com<br/>123.645.87 / 028.299.024</p>
-				<form 
-                                        method="post" action="MailChimpApi.php">
-				<input type="text" placeholder="Nombre, Email. " name="cadena" autocomplete="off" id="mc-email">
-                                            
-				<button id="mc-submit" class="ro-btn-bd-1 hvr-radial-out"> ¿QUIERES SUSCRIBIRTE? </button>
-				</form>
               </div>
 			  
 			  
@@ -39,10 +33,12 @@
                 <div class="ro-footer-separator"></div>
               </div>
               <div class="col-lg-4 col-md-12 col-sm-7 col-xs-12 ro-footer-item">
-                <h5>OFERTAS / BOLETIN ONLINE 🍁 </h5>
-                <div class="ro-footer-newletter">
-                  <input type="text"/><a href="#"><i class="icon-basic-mail-open-text"></i></a>
-                </div>
+                <form method="post" action="MailChimpApi.php">
+                  <h5>OFERTAS / BOLETIN ONLINE 🍁 </h5>
+                  <div class="ro-footer-newletter">
+                    <input type="text" name="cadena" autocomplete="off" id="mc-email"><button id="mc-submit" class="ro-btn-bd-1 hvr-radial-out"><i class="icon-basic-mail-open-text"></i></button>
+                  </div>
+                </form>
                 <ul class="ro-social">
                   <li><a href="#"><i class="icon-facebook"></i></a></li>
                   <li><a href="#"><i class="icon-vimeo"></i></a></li>
