@@ -34,7 +34,7 @@
               </div>
               <div class="col-lg-4 col-md-12 col-sm-7 col-xs-12 ro-footer-item">
                 <form method="post" action="MailChimpApi.php">
-                  <h5>OFERTAS / BOLETIN ONLINE 🍁 </h5>
+                  <h5>OFERTAS / BOLETIN ONLINE 🍁</h5>
                   <div class="ro-footer-newletter">
                     <input type="text" name="cadena" autocomplete="off" id="mc-email"><button id="mc-submit" class="ro-btn-bd-1 hvr-radial-out"><i class="icon-basic-mail-open-text"></i></button>
                   </div>
@@ -49,7 +49,15 @@
           </div>
           <div class="ro-foot-footer">
             <h6>© 2019 Cecilia Schwarz Todos los derechos reservados. <br>
-				::Diseño & Programacion <a href="http://www.ethospublicidad.com.ar/ethospublicidaden1min.php"> Ethos Publicidad::</a></h6>
+				::Diseño & Programación <a href="http://www.ethospublicidad.com.ar/ethospublicidaden1min.php"> Ethos Publicidad::</a></h6>
           </div>
         </div>
       </footer>
+
+      <script>
+
+        $('#mc-submit').click(function(){
+          swal('¡Gracias por sumarte a nuestra Newsletter!');
+        });
+        
+      </script>

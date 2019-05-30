@@ -225,6 +225,11 @@
 		
 		<?php 
         include("include/footer.php");
+
+        if (isset($_GET['newsletter'])) {
+          echo '<script>alert("¡Gracias por sumarte a nuestro Newsletter!")</script>';
+        }
+        
       ?>
       
       <div id="ro-backtop"><i class="icon-up"></i></div>

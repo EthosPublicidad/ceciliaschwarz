@@ -282,152 +282,143 @@ if(empty($_REQUEST['idpedido'])){
                 </div>
 				  
 				  <!--/*accordion*/-->
+
+          <input type="hidden" name="mercadopago" value="<?=$preference['response']['init_point']?>" />
+          <input type="hidden" name="tipodepago" id="tipodepago"  />
+          <input type="hidden" name="idpedido" value="<?=$_REQUEST['idpedido']?>"  />
+          <input type="hidden" name="opcion" value="confirmarpago"  />
 				  
 				  <div class="payment-method">
-                                <div class="payment-accordion">
-                                    <div id="accordion">
-                                        <div class="card">
-                                            <div class="card-header" id="#payment-1">
-                                                <h5 class="panel-title">
-                                                    <a onclick="enviar('ACORDAR');" class="activac" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="acove">
-                                                        Acordar con el vendedor.
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    <p>Se te envia el pedido con todos los datos de cuenta de nosotros para que nos hagas una traferencia</p>
-                                                </div>
-                                            </div>
-                                        </div>
+            <div class="payment-accordion">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="#payment-1">
+                            <h5 class="panel-title">
+                                <a onclick="enviar('ACORDAR');" class="activac" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="acove">
+                                    Acordar con el vendedor.
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Se te envía el pedido con todos los datos de cuenta de nosotros para que nos hagas una transferencia</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                    
+                        <div class="card-header" id="#payment-4" class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                            <h5 class="panel-title">
+                                    MercadoPago
+                            </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse show" data-parent="#accordion">
+                            <div class="card-body">
+                            <div class="col-md-12">
+                                <div id="smh">
+                                  <a onclick="enviar('MP');">
+                                    <img id="auxbutton" style="width: 100px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/mercadopago.png">
+                                  </a>
+                                  <input type="hidden" value="false" id="mptrue">
+                                </div>
                                         
-                                        <input type="hidden" name="mercadopago" value="<?=$preference['response']['init_point']?>" />
-									<input type="hidden" name="tipodepago" id="tipodepago"  />
-									<input type="hidden" name="idpedido" value="<?=$_REQUEST['idpedido']?>"  />
-									<input type="hidden" name="opcion" value="confirmarpago"  />
-                                        <div class="card">
-                                        
-                                            <div class="card-header" id="#payment-4">
-                                                <h5 class="panel-title">
-                                                    <a onclick="enviar('MP');" class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                                        MercadoPago
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseFour" class="collapse" data-parent="#accordion">
-                                                <div class="card-body">
-                                                <div class="col-md-12">
-                                                    <div id="smh">
-                                                        <img id="auxbutton" style="width: 100px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/mercadopago.png">
-                                                        <input type="hidden" value="false" id="mptrue">
-                                                    </div>
-                                                            
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="test01">
-                                                
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="card">
-                                            <div class="card-header" id="#payment-2">
-                                                <h5 class="panel-title">
-                                                    <a class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="tdc">
-                                                        Tarjetas de credito / debito (Mercado Pago)
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                                                <div class="card-body">
-                                                        <input type="hidden" name="nombre" id="nombreMP" value="<?php// echo $this->session->userdata('nombre');?>">
-                                                        <input type="hidden" name="apellido" id="apellidoMP" value="<?php// echo $this->session->userdata('apellido');?>">
-                                                        <input type="hidden" name="email" id="emailMP" value="<?php //echo $this->session->userdata('email');?>">
-                                                        <input type="hidden" name="direccion1" id="dir1MP" value="<?php //echo $this->session->userdata('direccion1');?>">
-                                                        <input type="hidden" name="direccion2" id="dir2MP" value="<?php //echo $this->session->userdata('direccion2');?>">
-                                                        <input type="hidden" name="provincia" id="provinciaMP" value="<?php //echo $this->session->userdata('provincia');?>">
-                                                        <input type="hidden" name="localidad" id="localidadMP" value="<?php //echo $this->session->userdata('localidad');?>">
-                                                        <input type="hidden" name="codigo_postal" id="cpMP" value="<?php //echo $this->session->userdata('codigo_postal');?>">
-                                                        <input type="hidden" name="telefono" id="telefonoMP" value="<?php //echo $this->session->userdata('telefono');?>">
-                                                        <input type="hidden" name="textar" id="txtar2">
-                                                        <input type="hidden" name="chebo" id="cheboMP">
-                                                        <input type="hidden" name="clave1" id="clave1MP">
-                                                        <input type="hidden" name="clave2" id="clave2MP">
-                                                        <input type="hidden" name="contadore" value="<?php echo $contaCart; ?>">
-                                                        <input type="hidden" name="tipo" value="mercadopago">
-                                                        <input id="ce" type="hidden" name="costo_envio" value="<?php echo $montoenvio; ?>"/>
-                                                        <input id="amount" type="hidden" name="totale" value="<?php echo $u; ?>"/>
-														  <p>Titular de la Tarjeta: <input data-checkout="cardholderName" type="text" style="background-color: white;" /></p>
-                                                          <p>N&uacute;mero de Tarjeta: <input data-checkout="cardNumber" type="text" style="background-color: white;" /></p>
-                                                         
-                                                          <p class="col-6">Mes de Expiraci&oacute;n: <input data-checkout="cardExpirationMonth" type="text" style="background-color: white;" /></p>
-                                                          <p class="col-6">A&ntilde;o de Expiraci&oacute;n: <input data-checkout="cardExpirationYear" type="text" style="background-color: white;" /></p>
-														 <p class="col-6">C&oacute;digo de Seguridad: <input data-checkout="securityCode" type="text" style="background-color: white;" /></p>
-                                                          
-                                                          <p class="col-6">N&uacute;mero de Documento: <input data-checkout="docNumber" type="text" style="background-color: white;" /></p>
-                                                          <br> <br> 
-                                                          <input data-checkout="docType" type="hidden" value="DNI"/>
-                                                          <p id="issuersField">Bancos: <br /><select class="banco" name="banco" id="issuersOptions"><option value="">Seleccione...</option></select></p><br /><br /><br />
-                                                          <p>Cuotas:<br /><select class="cuota" name="cuota" id="installmentsOption"><option value="">Seleccione...</option></select></p>
-                                                    
-                                                </div>
-                                            </div>
-                                            <div id="test02">
-
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header" id="#payment-3">
-                                                <h5 class="panel-title">
-                                                    <a class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="otras">
-                                                        Otras Plataformas
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    <div class="row" >
-                                                        <div class="col-md-3">
-                                                            <label>
-                                                            <input type="radio" name="otrospago" value="rapipago" />
-                                                                <img style="width: 80px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/rapipago.jpg">
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label>
-                                                                <input type="radio" name="otrospago" value="pagofacil" onclick='vselect(this.value)' />
-                                                                <img style="width: 100px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/pagofacil.jpg">
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label>
-                                                                <input type="radio" name="otrospago" value="provnet" onclick='vselect(this.value)' />
-                                                                <img style="width: 80px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/provnet.png">
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label>
-                                                                <input type="radio" name="otrospago" value="redlink" onclick='vselect(this.value)' />
-                                                                <img style="width: 75px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/redlink.jpg">
-                                                            </label>
-                                                        </div>
-                                                    <input type="hidden" id="presult">
-                                                    </div>                            
-                                                </div>
-                                            </div>
-                                            <div id="test03">
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="order-button-payment" id="bt">
-                                        <input id='boton1' value='Acordar' type='submit' form='pay'>
-                                    </div>
                                 </div>
                             </div>
-				  
-				  
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header" id="#payment-2">
+                            <h5 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="tdc">
+                                    Tárjetas de crédito / débito (Mercado Pago)
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                    <input type="hidden" name="nombre" id="nombreMP" value="<?php// echo $this->session->userdata('nombre');?>">
+                                    <input type="hidden" name="apellido" id="apellidoMP" value="<?php// echo $this->session->userdata('apellido');?>">
+                                    <input type="hidden" name="email" id="emailMP" value="<?php //echo $this->session->userdata('email');?>">
+                                    <input type="hidden" name="direccion1" id="dir1MP" value="<?php //echo $this->session->userdata('direccion1');?>">
+                                    <input type="hidden" name="direccion2" id="dir2MP" value="<?php //echo $this->session->userdata('direccion2');?>">
+                                    <input type="hidden" name="provincia" id="provinciaMP" value="<?php //echo $this->session->userdata('provincia');?>">
+                                    <input type="hidden" name="localidad" id="localidadMP" value="<?php //echo $this->session->userdata('localidad');?>">
+                                    <input type="hidden" name="codigo_postal" id="cpMP" value="<?php //echo $this->session->userdata('codigo_postal');?>">
+                                    <input type="hidden" name="telefono" id="telefonoMP" value="<?php //echo $this->session->userdata('telefono');?>">
+                                    <input type="hidden" name="textar" id="txtar2">
+                                    <input type="hidden" name="chebo" id="cheboMP">
+                                    <input type="hidden" name="clave1" id="clave1MP">
+                                    <input type="hidden" name="clave2" id="clave2MP">
+                                    <input type="hidden" name="contadore" value="<?php echo $contaCart; ?>">
+                                    <input type="hidden" name="tipo" value="mercadopago">
+                                    <input id="ce" type="hidden" name="costo_envio" value="<?php echo $montoenvio; ?>"/>
+                                    <input id="amount" type="hidden" name="totale" value="<?php echo $u; ?>"/>
+				  <p>Titular de la Tarjeta: <input data-checkout="cardholderName" type="text" style="background-color: white;" /></p>
+                                      <p>N&uacute;mero de Tarjeta: <input data-checkout="cardNumber" type="text" style="background-color: white;" /></p>
+                                     
+                                      <p class="col-6">Mes de Expiraci&oacute;n: <input data-checkout="cardExpirationMonth" type="text" style="background-color: white;" /></p>
+                                      <p class="col-6">A&ntilde;o de Expiraci&oacute;n: <input data-checkout="cardExpirationYear" type="text" style="background-color: white;" /></p>
+				 <p class="col-6">C&oacute;digo de Seguridad: <input data-checkout="securityCode" type="text" style="background-color: white;" /></p>
+                                      
+                                      <p class="col-6">N&uacute;mero de Documento: <input data-checkout="docNumber" type="text" style="background-color: white;" /></p>
+                                      <br> <br> 
+                                      <input data-checkout="docType" type="hidden" value="DNI"/>
+                                      <p id="issuersField">Bancos: <br /><select class="banco" name="banco" id="issuersOptions"><option value="">Seleccione...</option></select></p><br /><br /><br />
+                                      <p>Cuotas:<br /><select class="cuota" name="cuota" id="installmentsOption"><option value="">Seleccione...</option></select></p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="#payment-3">
+                            <h5 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="otras">
+                                    Otras Plataformas
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row" >
+                                    <div class="col-md-3">
+                                        <label>
+                                        <input type="radio" name="otrospago" value="rapipago" />
+                                            <img style="width: 80px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/rapipago.jpg">
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>
+                                            <input type="radio" name="otrospago" value="pagofacil" onclick='vselect(this.value)' />
+                                            <img style="width: 100px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/pagofacil.jpg">
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>
+                                            <input type="radio" name="otrospago" value="provnet" onclick='vselect(this.value)' />
+                                            <img style="width: 80px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/provnet.png">
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>
+                                            <input type="radio" name="otrospago" value="redlink" onclick='vselect(this.value)' />
+                                            <img style="width: 75px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/redlink.jpg">
+                                        </label>
+                                    </div>
+                                <input type="hidden" id="presult">
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-button-payment" id="bt">
+                    <input id='boton1' value='Acordar' type='submit' form='pay'>
+                </div>
+            </div>
+        </div>			  
               </div>
 			  </form>
           </div>
@@ -456,34 +447,40 @@ if(empty($_REQUEST['idpedido'])){
     <!-- build:js assets/scripts/main-min.js -->
     <script src='assets/scripts/main.js'></script>
 	  <script>
-		function enviar(tipo){
-			if(tipo=='MP'){
-				$('#tipodepago').val('MP');
-			}else{
-				$('#tipodepago').val('ACORDAR');
-			}
-			$('#formulario').submit();
-		}
+
+  		function enviar(tipo){
+
+  			if (tipo=='MP'){
+
+  				$('#tipodepago').val('MP');
+
+  			} else {
+
+  				$('#tipodepago').val('ACORDAR');
+  			}
+
+  			$('#formulario').submit();
+  		}
+
 	</script>
 	<!-- Acordion -->
 	  <script type="text/javascript"> 
 		  
-	  $(".coupon-accordion h3").click(function(){
-		
-   var contenido=$(this).next(".coupon-content");
-			
-   if(contenido.css("display")=="none"){ //open		
-      contenido.slideDown(350);			
-      $(this).addClass("open");
-   }
-   else{ //close		
-      contenido.slideUp(350);
-      $(this).removeClass("open");	
-  }
-							
-});
+    	  $(".coupon-accordion h3").click(function(){
+    		
+           var contenido=$(this).nextAll(".coupon-content");
+        			
+           if(contenido.css("display")=="none"){ //open		
+              contenido.slideDown(350);			
+              $(this).addClass("open");
+           }
+           else{ //close		
+              contenido.slideUp(350);
+              $(this).removeClass("open");	
+          }
+        							
+        });
 
-	  
 	  </script>
 	
 	

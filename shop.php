@@ -82,7 +82,7 @@
 					 </div>
 					 
 					 <div class="cart-actions">
-						 <a href="checkout.html"> Comprar</a>
+						 <a href="checkout.php"> Comprar</a>
 						  <a href="cart.html"> Ver Carrito </a>
 					 
 					 </div>

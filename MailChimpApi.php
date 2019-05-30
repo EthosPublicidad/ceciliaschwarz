@@ -46,8 +46,8 @@
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
 		$result = curl_exec($ch);
 		sleep(3);
-		header('Location: index.php');
-		//$this->load->view('homepage');
+
+		header('Location: index.php?newsletter=1');
 	}
 	index();
 	
