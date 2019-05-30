@@ -11,9 +11,16 @@ class GestionUsuario extends Modelo
 
 	public function login($usuario, $clave) 
     {
-        $result = $this->_db->query("SELECT u.* FROM usuario u WHERE u.usuario = '$usuario' and u.clave = '$clave' and u.estado = 'A' LIMIT 1"); 
+        $result = $this->_db->query("SELECT * FROM usuario WHERE usuario = '$usuario'"); 
         $users = $result->fetch_all(MYSQLI_ASSOC); 
-        return $users; 
+        if (count($users) == 1) {
+            return password_verify($clave, $users[0]['clave']);
+            if (password_verify($clave, $users['clave'])) {
+                return $users; 
+            }
+        } else {
+            return $users;
+        }
     } 
 
     public function traerUsuarios()

@@ -100,15 +100,23 @@ class Gestion extends Modelo
     } 
 	
 	public function loginCliente($mail, $clave) 
-    {	
-		$result = $this->_db->query("SELECT * FROM cliente WHERE mail = '$mail' AND clave = '$clave' LIMIT 1"); 
-		$respuesta = $result->fetch_all(MYSQLI_ASSOC);
-
-   		return $respuesta; 
+    {
+        $result = $this->_db->query("SELECT * FROM cliente WHERE mail = '$mail'"); 
+        $clientes = $result->fetch_all(MYSQLI_ASSOC); 
+        if (count($clientes) == 1) {
+            if (password_verify($clave, $clientes[0]['clave'])) {
+                return $clientes[0]; 
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     } 
 	
 	public function crearCliente($apenom, $mail, $telefono, $clave) 
     {	
+    	$clave = password_hash($clave);
 		$this->_db->query("INSERT INTO cliente (apellidonombre, mail, telefono, clave) 
 						   VALUES('$apenom', '$mail', '$telefono', '$clave')");
 		if($this->_db->error){

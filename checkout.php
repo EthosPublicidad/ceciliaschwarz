@@ -4,7 +4,7 @@ $cont = 0;
 require_once "./gestion/Objetos/Gestion.php"; 
 require_once "mercadopago.php";
 
-	$gestion=new Gestion();
+	$gestion = new Gestion();
 	
 	/*if(empty($_SESSION['clientelogin'])){
 	header("Location: index.php");
@@ -73,23 +73,23 @@ if(empty($_REQUEST['idpedido'])){
                            <div id="checkout-login" class="coupon-content">
                                 <div class="coupon-info">
                                    
-                                    
-                                        <p class="form-row-first">
+                                    <form action="gestion/loginCliente.php" method="POST">
+                                      <p class="form-row-first">
                                             <label>Email
                                                 <span class="required">*</span>
                                             </label>
-                                            <input type="text" id="emailCheck" name="emailc">
+                                            <input type="text" id="mail" name="mail">
                                         </p>
                                         <p class="form-row-last">
                                             <label>Contraseña
                                                 <span class="required">*</span>
                                             </label>
-                                            <input type="password" id="pwdCheck" name="pwdc">
+                                            <input type="password" id="clave" name="clave">
                                         </p>
                                         <p class="form-row">
-                                            <input type="submit" value="Login">
-                                            
+                                            <input type="submit" value="login">
                                         </p>
+                                    </form>
 										
 										
 										<div class="acordeon">
@@ -124,12 +124,14 @@ if(empty($_REQUEST['idpedido'])){
                     <div class="cont-input">
 					 <p class="form-row-first">
                      <label>Nombre<span class="required">*</span></label>
-                      <input type="text" name="nombre">
+                      <input type="text" name="nombre" value="
+                      <?php echo $_SESSION['apellidonombre']; ?>">
                      </p> 
 					  
 					  <p class="form-row-first">
                      <label>Apellido<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="emailc">
+                      <input type="text" id="emailCheck" name="emailc" value="
+                      <?php echo $_SESSION['mail']; ?>">
                      </p> 
 					  </div>
                   </div>
@@ -173,7 +175,8 @@ if(empty($_REQUEST['idpedido'])){
 					  
 					  <p class="form-row-first">
                      <label>Teléfono<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="telefono">
+                      <input type="text" id="emailCheck" name="telefono" value="
+                      <?php echo $_SESSION['telefono']; ?>">
                      </p> 
 					  </div>
                   </div>
