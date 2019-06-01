@@ -225,10 +225,6 @@
 		
 		<?php 
         include("include/footer.php");
-
-        if (isset($_GET['newsletter'])) {
-          echo '<script>alert("¡Gracias por sumarte a nuestro Newsletter!")</script>';
-        }
         
       ?>
       
@@ -246,10 +242,18 @@
     <script src='vendors/jQuery.dotdotdot/src/js/jquery.dotdotdot.min.js'></script>
     <script src='vendors/elevatezoom-master/jquery.elevatezoom.js'></script>
     <script src='vendors/FancyBox/source/jquery.fancybox.js'></script>
+    <script src='node_modules/sweetalert/dist/sweetalert.min.js'></script>
     <!-- endbuild -->
     <!-- build:js assets/scripts/main-min.js -->
     <script src='assets/scripts/main.js'></script>
     <!-- endbuild -->
+
     <script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','UA-57387972-1');ga('send','pageview');</script>
+
+    <?php
+        if (isset($_GET['newsletter'])) {  
+          echo '<script>swal("¡Gracias por suscribirte a nuestro Newsletter!")</script>';
+        }
+    ?>
   </body>
 </html>

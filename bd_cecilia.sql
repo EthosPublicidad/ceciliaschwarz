@@ -1,22 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 25-04-2019 a las 08:48:35
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 5.6.39
+-- Servidor: localhost:8889
+-- Tiempo de generación: 31-05-2019 a las 03:32:30
+-- Versión del servidor: 5.7.25
+-- Versión de PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `bd_cecilia`
@@ -59,6 +51,26 @@ INSERT INTO `categoria` (`id`, `descripcion`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `categoria_servicio`
+--
+
+CREATE TABLE `categoria_servicio` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(151) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `categoria_servicio`
+--
+
+INSERT INTO `categoria_servicio` (`id`, `nombre`) VALUES
+(1, 'Spa y masajes'),
+(2, 'Rostro'),
+(3, 'Cuerpo');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `cliente`
 --
 
@@ -75,7 +87,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `apellidonombre`, `mail`, `telefono`, `clave`) VALUES
-(10, 'Humberto ', 'humbearte@gmail.com', 1139565771, 'humber1112'),
+(10, 'Humberto ', 'humbearte@gmail.com', 1139565771, '$2y$10$8UctHgF9kxniESNU2xMHxeQ93gdBEozJn02pqZDLzTVSMU9o6TpEu'),
 (11, 'SebastiÃ¡n coronel', 'elpebete22@gmail.com', 42649421, '42323495'),
 (12, 'JAGA DEESH', 'Esteban232655@mail.com', 2147483647, 'JAGADEESH23'),
 (13, 'Cristian Leandro Gil', 'cg8909436@gmail.com', 2147483647, 'holaquetal1'),
@@ -263,6 +275,36 @@ INSERT INTO `productos` (`id`, `descripcion`, `precio`, `categoria`, `estado`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `servicio`
+--
+
+CREATE TABLE `servicio` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(151) NOT NULL,
+  `precio` int(11) NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `categoria_servicio_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `servicio`
+--
+
+INSERT INTO `servicio` (`id`, `nombre`, `precio`, `descripcion`, `categoria_servicio_id`) VALUES
+(1, 'Full Body Massage (55 mins)', 78, 'Lorem ipsum dolor sit amet, ea eos causae vocent accusamus, eum tota partem an. Cu mucius postea ornatus quo. Duo no aeque dolorum patrioque. Ut sed blandit antiopam sententiae, cu prima similique deterruisset vis.', 1),
+(2, 'Add on: Deep Tissue Massage (per area)', 25, 'Lorem ipsum dolor sit amet, ea eos causae vocent accusamus, eum tota partem an. Cu mucius postea ornatus quo. Duo no aeque dolorum patrioque. Ut sed blandit antiopam sententiae, cu prima similique deterruisset vis.', 1),
+(3, 'Hot Stone Massage (55 mins)', 73, 'Lorem ipsum dolor sit amet, ea eos causae vocent accusamus, eum tota partem an. Cu mucius postea ornatus quo. Duo no aeque dolorum patrioque. Ut sed blandit antiopam sententiae, cu prima similique deterruisset vis.', 1),
+(4, 'Maternity Massage (55 mins)', 50, 'Lorem ipsum dolor sit amet, ea eos causae vocent accusamus, eum tota partem an. Cu mucius postea ornatus quo. Duo no aeque dolorum patrioque. Ut sed blandit antiopam sententiae, cu prima similique deterruisset vis.', 1),
+(5, 'Delux Seated Massage (20 mins)', 23, 'Lorem ipsum dolor sit amet, ea eos causae vocent accusamus, eum tota partem an. Cu mucius postea ornatus quo. Duo no aeque dolorum patrioque. Ut sed blandit antiopam sententiae, cu prima similique deterruisset vis.', 1),
+(6, 'Regular Seated Massage (10 mins)', 10, 'Lorem ipsum dolor sit amet, ea eos causae vocent accusamus, eum tota partem an. Cu mucius postea ornatus quo. Duo no aeque dolorum patrioque. Ut sed blandit antiopam sententiae, cu prima similique deterruisset vis.', 1),
+(7, 'Body Polish (1 hr)', 68, 'Lorem ipsum dolor sit amet, ea eos causae vocent accusamus, eum tota partem an. Cu mucius postea ornatus quo. Duo no aeque dolorum patrioque. Ut sed blandit antiopam sententiae, cu prima similique deterruisset vis.', 1),
+(8, 'Sea Mud Wrap (1 hr)', 78, 'Lorem ipsum dolor sit amet, ea eos causae vocent accusamus, eum tota partem an. Cu mucius postea ornatus quo. Duo no aeque dolorum patrioque. Ut sed blandit antiopam sententiae, cu prima similique deterruisset vis.', 1),
+(9, 'The Ultimate Body Treatment (1hr 50 mins)', 100, 'Lorem ipsum dolor sit amet, ea eos causae vocent accusamus, eum tota partem an. Cu mucius postea ornatus quo. Duo no aeque dolorum patrioque. Ut sed blandit antiopam sententiae, cu prima similique deterruisset vis.', 1),
+(10, 'Full Body Massage (55 mins)', 78, 'Lorem ipsum dolor sit amet, ea eos causae vocent accusamus, eum tota partem an. Cu mucius postea ornatus quo. Duo no aeque dolorum patrioque. Ut sed blandit antiopam sententiae, cu prima similique deterruisset vis.', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `subcategoria`
 --
 
@@ -282,7 +324,7 @@ CREATE TABLE `subcategoria` (
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `usuario` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `clave` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `clave` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
   `mail` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `telefono` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `estado` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'A',
@@ -294,7 +336,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `usuario`, `clave`, `mail`, `telefono`, `estado`, `apellidonombre`) VALUES
-(2, 'admin', 'admin', 'admin@gmail.com', '1535556666', 'A', 'Tec One'),
+(2, 'admin', '$2y$10$pNvZ8G4cJQg6oNjEus9oJu4eINesr2cDD9EFkOnXWLyXSu9uXHWbS', 'admin@gmail.com', '1535556666', 'A', 'Tec One'),
 (3, 'tecone.tecnologia@gmail.com', 'corriente535', 'tecone.tecnologia@gmail.com', '1139565771', 'A', 'TecOne Tecnologia '),
 (4, 'santiago', 'Santiago@1', 'ethos.dc@gmail.com ', '01122885601', 'A', 'Santiago lopez');
 
@@ -306,6 +348,12 @@ INSERT INTO `usuario` (`id`, `usuario`, `clave`, `mail`, `telefono`, `estado`, `
 -- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `categoria_servicio`
+--
+ALTER TABLE `categoria_servicio`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -331,6 +379,13 @@ ALTER TABLE `pedido`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `servicio`
+--
+ALTER TABLE `servicio`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `categoria_servicio_id` (`categoria_servicio_id`);
 
 --
 -- Indices de la tabla `subcategoria`
@@ -379,6 +434,12 @@ ALTER TABLE `productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
+-- AUTO_INCREMENT de la tabla `servicio`
+--
+ALTER TABLE `servicio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT de la tabla `subcategoria`
 --
 ALTER TABLE `subcategoria`
@@ -389,8 +450,13 @@ ALTER TABLE `subcategoria`
 --
 ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `servicio`
+--
+ALTER TABLE `servicio`
+  ADD CONSTRAINT `categoria_servicio_servicio` FOREIGN KEY (`categoria_servicio_id`) REFERENCES `categoria_servicio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;

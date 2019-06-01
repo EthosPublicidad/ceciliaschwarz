@@ -8,7 +8,11 @@
     <meta name="description" content="Aqua | Spa and Beauty HTML5 Template">
     
 	  <?php 
+        session_start();
         include("include/head.php");
+        require_once "./gestion/Objetos/Gestion.php";
+
+        $gestion = new Gestion();
       ?>
 	  
   </head>
@@ -65,75 +69,33 @@
                   <div class="ro-service-list col-md-8 col-md-offset-4">
                     <h3 class="ro-hr-heading">Spa y Masajes</h3>
                     <ul class="ro-bgc-trans-5">
-                      <li  class="acordeon_servicio">
-                        <div class="ro-service acordeon_ser_titulo">Full Body Massage (55 mins)</div>
-                        <div class="ro-separator"> </div>
-                        <div class="ro-price">$78</div>
-						  
-          						  <div class="acordeon_contenido-ser"> 
-          							  
-          							  <label for="iten1" class="acordeons_titulo"><p>
-          Revitalización facial + drenaje facial con gua-sha de jade 30 min descontracturante · Masaje 30 min + Aromaterapia · Drenaje linfático en piernas </p>
-                          </label>
-          								 
-          								 <button value="Login" class="abtn2" type="button">Reservar</button>
-          						  </div>
-						  
-						  
-                      </li>
-                      <li>
-                        <div class="ro-service">Add on: Deep Tissue Massage (per area)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$25</div>
-                        <div class="acordeon_contenido-ser"> 
-                          
-                          <label for="iten1" class="acordeons_titulo"><p>
-          Revitalización facial + drenaje facial con gua-sha de jade 30 min descontracturante · Masaje 30 min + Aromaterapia · Drenaje linfático en piernas </p>
-                          </label>
-                           
-                           <button value="Login" class="abtn2" type="button">Reservar</button>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Hot Stone Massage (55 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$73</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Maternity Massage (55 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$50</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Delux Seated Massage (20 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$23</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Regular Seated Massage (10 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$10</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Body Polish (1 hr)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$68</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Sea Mud Wrap (1 hr)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$78</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">The Ultimate Body Treatment (1hr 50 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$100</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Full Body Massage (55 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$78</div>
-                      </li>
+
+                      <?php
+                        $servicios = $gestion->traerServicios();
+
+                        foreach ($servicios as $servicio) {
+                          echo '<li class="acordeon_servicio">
+                            <div class="ro-service acordeon_ser_titulo">' . $servicio['nombre'] .'</div>
+                            <div class="ro-separator"></div>
+                            <div class="ro-price">$' . $servicio['precio'] . '</div>
+                  
+                            <div class="acordeon_contenido-ser"> 
+                              
+                              <label for="iten1" class="acordeons_titulo">
+                                <p>'
+                                  . $servicio['descripcion'] .
+                                '</p>
+                              </label>
+                               
+                               <button value="Login" class="abtn2" type="button">Reservar</button>
+                            </div>
+                  
+                  
+                          </li>';
+                        }
+                        
+                      ?>
+
                     </ul>
                   </div>
                 </div>
@@ -145,56 +107,33 @@
                   <div class="ro-service-list col-md-8">
                     <h3 class="ro-hr-heading">Rostro</h3>
                     <ul class="ro-bgc-trans-1">
-                      <li>
-                        <div class="ro-service">Full Body Massage (55 mins)</div>
-                        <div class="ro-separator"> </div>
-                        <div class="ro-price">$78</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Add on: Deep Tissue Massage (per area)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$25</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Hot Stone Massage (55 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$73</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Maternity Massage (55 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$50</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Delux Seated Massage (20 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$23</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Regular Seated Massage (10 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$10</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Body Polish (1 hr)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$68</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Sea Mud Wrap (1 hr)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$78</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">The Ultimate Body Treatment (1hr 50 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$100</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Full Body Massage (55 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$78</div>
-                      </li>
+
+                      <?php
+                        $servicios = $gestion->traerServicios();
+
+                        foreach ($servicios as $servicio) {
+                          echo '<li class="acordeon_servicio">
+                            <div class="ro-service acordeon_ser_titulo">' . $servicio['nombre'] .'</div>
+                            <div class="ro-separator"></div>
+                            <div class="ro-price">$' . $servicio['precio'] . '</div>
+                  
+                            <div class="acordeon_contenido-ser"> 
+                              
+                              <label for="iten1" class="acordeons_titulo">
+                                <p>'
+                                  . $servicio['descripcion'] .
+                                '</p>
+                              </label>
+                               
+                               <button value="Login" class="abtn2" type="button">Reservar</button>
+                            </div>
+                  
+                  
+                          </li>';
+                        }
+                        
+                      ?>
+
                     </ul>
                   </div>
                 </div>
@@ -206,56 +145,32 @@
                   <div class="ro-service-list col-md-8 col-md-offset-4">
                     <h3 class="ro-hr-heading">Cuerpo</h3>
                     <ul class="ro-bgc-trans-5">
-                      <li>
-                        <div class="ro-service">Full Body Massage (55 mins)</div>
-                        <div class="ro-separator"> </div>
-                        <div class="ro-price">$78</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Add on: Deep Tissue Massage (per area)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$25</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Hot Stone Massage (55 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$73</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Maternity Massage (55 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$50</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Delux Seated Massage (20 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$23</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Regular Seated Massage (10 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$10</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Body Polish (1 hr)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$68</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Sea Mud Wrap (1 hr)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$78</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">The Ultimate Body Treatment (1hr 50 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$100</div>
-                      </li>
-                      <li>
-                        <div class="ro-service">Full Body Massage (55 mins)</div>
-                        <div class="ro-separator"></div>
-                        <div class="ro-price">$78</div>
-                      </li>
+
+                      <?php
+                        $servicios = $gestion->traerServicios();
+
+                        foreach ($servicios as $servicio) {
+                          echo '<li class="acordeon_servicio">
+                            <div class="ro-service acordeon_ser_titulo">' . $servicio['nombre'] .'</div>
+                            <div class="ro-separator"></div>
+                            <div class="ro-price">$' . $servicio['precio'] . '</div>
+                  
+                            <div class="acordeon_contenido-ser"> 
+                              
+                              <label for="iten1" class="acordeons_titulo">
+                                <p>'
+                                  . $servicio['descripcion'] .
+                                '</p>
+                              </label>
+                               
+                               <button value="Login" class="abtn2" type="button">Reservar</button>
+                            </div>
+                  
+                  
+                          </li>';
+                        } 
+                      ?>
+
                     </ul>
                   </div>
                 </div>

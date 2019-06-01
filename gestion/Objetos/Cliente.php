@@ -32,17 +32,7 @@ class Cliente extends Modelo
     public function setApellidonombre($apenom) 
     { 
 		$this->apellidonombre = $apenom;
-    } 
-
-    public function getUsuario() 
-    { 
-		return $this->usuario;
-    } 
-
-    public function setUsuario($usuario) 
-    { 
-		$this->usuario = $usuario;
-    } 
+    }
 
     public function getClave() 
     { 
