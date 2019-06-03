@@ -18,6 +18,7 @@ if(empty($_REQUEST['idpedido'])){
 
 // PRODUCCION
  $mp = new MP ("4630512487347499", "UZ4OaABJTLkB8ioZwPOZhMjfAoXOUJuh");
+
 ?>
 <!DOCTYPE html>
 <html class="no-js">
@@ -290,8 +291,8 @@ if(empty($_REQUEST['idpedido'])){
 				  
 				  <!--/*accordion*/-->
 
-          <input type="hidden" name="mercadopago" value="<?=$preference['response']['init_point']?>" />
-          <input type="hidden" name="tipodepago" id="tipodepago"  />
+          <input type="hidden" id="mercadopago" value="<?=$preference['response']['init_point']?>" />
+          <input type="hidden" id="medio" value="acordarVendedor">
           <input type="hidden" name="idpedido" value="<?=$_REQUEST['idpedido']?>"  />
           <input type="hidden" name="opcion" value="confirmarpago"  />
 				  
@@ -429,7 +430,6 @@ if(empty($_REQUEST['idpedido'])){
                       </div>
                     </div>
                   </div>
-                  <input type="hidden" id="medio" value="acordarVendedor">
                   <div class="order-button-payment" id="bt">
                       <input id='boton1' value='Acordar' type='submit'>
                   </div>
@@ -503,6 +503,7 @@ if(empty($_REQUEST['idpedido'])){
                 });
               break;
             case 'mercadoPago':
+              window.open($('#mercadopago').val(), '_self');
               break;
             case 'tarjetas':
               break;
