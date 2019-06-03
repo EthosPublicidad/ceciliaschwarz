@@ -130,7 +130,7 @@ if(empty($_REQUEST['idpedido'])){
 					  
 					  <p class="form-row-first">
                      <label>Apellido<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="emailc">
+                      <input type="text" id="apellido" name="apellido">
                      </p> 
 					  </div>
                   </div>
@@ -140,13 +140,14 @@ if(empty($_REQUEST['idpedido'])){
                     <div class="cont-input">
 					 <p class="form-row-first">
                      <label>Email<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="mail" value="
+                      <input type="text" id="mail" name="mail" value="
                       <?php echo $_SESSION['mail']; ?>">
                      </p> 
 					  
 					  <p class="form-row-first">
                      <label>Dirección<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="direccion">
+                      <input type="text" id="dire" name="direccion" value="
+                      <?php echo $_SESSION['direccion']; ?>">
                      </p> 
 					  </div>
                   </div>
@@ -156,12 +157,14 @@ if(empty($_REQUEST['idpedido'])){
                     <div class="cont-input">
 					 <p class="form-row-first">
                      <label>Provincia<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="barrio">
+                      <input type="text" id="prov" name="barrio" value="
+                      <?php echo $_SESSION['provincia']; ?>">
                      </p> 
 					  
 					  <p class="form-row-first">
                      <label>Ciudad *<span class="required"></span></label>
-                      <input type="text" id="emailCheck" name="ciudad">
+                      <input type="text" id="ciudad" name="ciudad" value="
+                      <?php echo $_SESSION['ciudad']; ?>">
                      </p> 
 					  </div>
                   </div>
@@ -170,12 +173,13 @@ if(empty($_REQUEST['idpedido'])){
                     <div class="cont-input">
 					 <p class="form-row-first">
                      <label>Codigo Postal<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="emailc">
+                      <input type="text" id="codpost" name="codpost" value="
+                      <?php echo $_SESSION['codigo_postal']; ?>">
                      </p> 
 					  
 					  <p class="form-row-first">
                      <label>Teléfono<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="telefono" value="
+                      <input type="text" id="tel" name="telefono" value="
                       <?php echo $_SESSION['telefono']; ?>">
                      </p> 
 					  </div>
@@ -425,7 +429,7 @@ if(empty($_REQUEST['idpedido'])){
                       </div>
                     </div>
                   </div>
-                
+                  <input type="hidden" id="medio" value="acordarVendedor">
                   <div class="order-button-payment" id="bt">
                       <input id='boton1' value='Acordar' type='submit'>
                   </div>
@@ -465,45 +469,53 @@ if(empty($_REQUEST['idpedido'])){
     <script src='assets/scripts/main.js'></script>
 	  <script>
 
-      var tipo;
+      $(document).ready(function() {
 
-      $('#acordarVendedor').click(function(){
-        tipo = 'acordarVendedor';
-        $('#boton1').val('Acordar');
-      });
-      $('#mercadoPago').click(function(){
-        tipo = 'mercadoPago';
-        $('#boton1').val('Pagar');
-      });
-      $('#tarjetas').click(function(){
-        tipo = 'tarjetas';
-        $('#boton1').val('Pagar');
-      });
-      $('#otrasPlataformas').click(function(){
-        $('#boton1').val('Pagar');
-        $('input[type=radio][name=otrospago]').change(function(){
-          tipo = this.value;
+        $('#acordarVendedor').click(function(){
+          $('#medio').val('acordarVendedor');
+          $('#boton1').val('Acordar');
         });
-      });
+        $('#mercadoPago').click(function(){
+          $('#medio').val('mercadoPago');
+          $('#boton1').val('Pagar');
+        });
+        $('#tarjetas').click(function(){
+          $('#medio').val('tarjetas');
+          $('#boton1').val('Pagar');
+        });
+        $('#otrasPlataformas').click(function(){
+          $('#boton1').val('Pagar');
+          $('input[type=radio][name=otrospago]').change(function(){
+            $('#medio').val(this.value);
+          });
+        });
 
-      $('#boton1').click(function(){
-        event.preventDefault();
-        switch (tipo) {
-          case 'acordarVendedor':
-            break;
-          case 'mercadoPago':
-            break;
-          case 'tarjetas':
-            break;
-          case 'rapipago':
-            break;
-          case 'pagofacil':
-            break;
-          case 'provnet':
-            break;
-          case 'redlink':
-            break;
-        }
+        $('#boton1').click(function(scope){
+          event.preventDefault();
+          switch ($('#medio').val()) {
+            case 'acordarVendedor':
+              console.log('acordar');
+              var mail = $('#mail').val(),
+                  nombre = $('#nombre').val();
+              $.post( "gestion/PHPMailer/mail.php", { mail: mail, nombre: nombre })
+                .done(function(){
+                  alert('enviado');
+                });
+              break;
+            case 'mercadoPago':
+              break;
+            case 'tarjetas':
+              break;
+            case 'rapipago':
+              break;
+            case 'pagofacil':
+              break;
+            case 'provnet':
+              break;
+            case 'redlink':
+              break;
+          }
+        });
       });
 
 	</script>
