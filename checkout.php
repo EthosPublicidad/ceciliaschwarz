@@ -254,7 +254,7 @@ if(empty($_REQUEST['idpedido'])){
 												
 												# Opciones: TRUE o FALSE 
 
-										$mp->sandbox_mode(FALSE);
+										$mp->sandbox_mode(TRUE);
 										$_REQUEST['idpedido'] = 1;
 										$back = array(
 											//Redireccionamientos segun resultados
@@ -344,42 +344,51 @@ if(empty($_REQUEST['idpedido'])){
                   </div>
                   <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
-                      
-                      <p>
-                        <span>Titular de la Tarjeta:  </span>
-                        <input class="input-sm" data-checkout="cardholderName" type="text" style="background-color: white;" />
-                      </p>
-                      <p><span>N&uacute;mero de Tarjeta: </span>
-                        <input data-checkout="cardNumber" type="text" style="background-color: white;" />
-                      </p>
-                     
-                      <p class="col-6">
-                        <span>Mes de Expiraci&oacute;n:</span> 
-                        <input data-checkout="cardExpirationMonth" type="text" style="background-color: white;" />
-                      </p>
 
-                      <p class="col-6">
-                        <span>A&ntilde;o de Expiraci&oacute;n: </span>
-                        <input data-checkout="cardExpirationYear" type="text" style="background-color: white;" />
-                      </p>
+                      <form action="" method="post" id="pay" name="pay">
+                        
+                        <p>
+                          <span>Titular de la Tarjeta:  </span>
+                          <input class="input-sm" data-checkout="cardholderName" type="text" style="background-color: white;" />
+                        </p>
+                        <p><span>N&uacute;mero de Tarjeta: </span>
+                          <input data-checkout="cardNumber" type="text" style="background-color: white;" />
+                        </p>
+                       
+                        <p class="col-6">
+                          <span>Mes de Expiraci&oacute;n:</span> 
+                          <input data-checkout="cardExpirationMonth" type="text" style="background-color: white;" />
+                        </p>
 
-                      <p class="col-6"><span>C&oacute;digo de Seguridad: </span>
-                        <input data-checkout="securityCode" type="text" style="background-color: white;" />
-                      </p>
-                      
-                      <p class="col-6"><span>N&uacute;mero de Documento:</span>
-                        <input data-checkout="docNumber" type="text" style="background-color: white;" />
-                      </p>
+                        <p class="col-6">
+                          <span>A&ntilde;o de Expiraci&oacute;n: </span>
+                          <input data-checkout="cardExpirationYear" type="text" style="background-color: white;" />
+                        </p>
 
-                      <br><br> 
-                      <input data-checkout="docType" type="hidden" value="DNI"/>
+                        <p class="col-6"><span>C&oacute;digo de Seguridad: </span>
+                          <input data-checkout="securityCode" type="text" style="background-color: white;" />
+                        </p>
+
+                        <p class="col-6"><span>Tipo de documento:</span>
+                          <select id="docType" data-checkout="docType"></select>
+                        </p>
+                        
+                        <p class="col-6"><span>N&uacute;mero de Documento:</span>
+                          <input data-checkout="docNumber" type="text" style="background-color: white;" />
+                        </p>
+
+                        <br><br> 
 
 
-                      <p><span>Cuotas:</span>
-                        <select class="cuota" name="cuota" id="installmentsOption">
-                          <option value="">Seleccione...</option>
-                        </select>
-                      </p>
+                        <p><span>Cuotas:</span>
+                          <select class="cuota" name="cuota" id="installmentsOption">
+                            <option value="">Seleccione...</option>
+                          </select>
+                        </p>
+
+                        <input type="hidden" name="paymentMethodId" />
+
+                      </form>
 
                     </div>
                   </div>
@@ -428,11 +437,11 @@ if(empty($_REQUEST['idpedido'])){
                   <div class="order-button-payment" id="bt">
                       <input id='boton1' value='Acordar' type='submit'>
                       <div class="boton-tarjetas" style="display: none;">
-                        <form action="/procesar-pago" method="POST">
+                        <form action="procesar-pago.php" method="POST">
                           <script
                             src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
-                            data-public-key="TEST-89409118-68b2-4c6d-9ca7-1430e729b9b1"
-                            data-transaction-amount="100.00">
+                            data-public-key="TEST-1b30b32a-7cc1-4991-b60d-8d0cb7005877"
+                            data-transaction-amount="<?php echo $precio; ?>">
                           </script>
                         </form>
                       </div>
@@ -488,36 +497,9 @@ if(empty($_REQUEST['idpedido'])){
           $('#boton1').val('Pagar');
         });
         $('#tarjetas').click(function(){
-          $('#medio').val('tarjetas');
-          $('#boton1').hide();
-          $('.boton-tarjetas').show();
-        });
-        $('#otrasPlataformas').click(function(){
-          $('#boton1').val('Pagar');
-          $('#boton1').show();
-          $('.boton-tarjetas').hide();
-          $('input[type=radio][name=otrospago]').change(function(){
-            $('#medio').val(this.value);
-          });
-        });
+          Mercadopago.setPublishableKey("TEST-1b30b32a-7cc1-4991-b60d-8d0cb7005877");
+              Mercadopago.getIdentificationTypes();
 
-        $('#boton1').click(function(scope){
-          event.preventDefault();
-          switch ($('#medio').val()) {
-            case 'acordarVendedor':
-              console.log('acordar');
-              var mail = $('#mail').val(),
-                  nombre = $('#nombre').val();
-              $.post( "gestion/PHPMailer/mail.php", { mail: mail, nombre: nombre })
-                .done(function(){
-                  alert('enviado');
-                });
-              break;
-            case 'mercadoPago':
-              window.open($('#mercadopago').val(), '_self');
-              break;
-            case 'tarjetas':
-              Mercadopago.setPublishableKey("TEST-b3d5b663-664a-4e8f-b759-de5d7c12ef8f");
               var bin = getBin();
 
               // Mercadopago.getInstallments({
@@ -587,6 +569,35 @@ if(empty($_REQUEST['idpedido'])){
                       form.submit();
                   }
               };
+          $('#medio').val('tarjetas');
+          $('#boton1').hide();
+          $('.boton-tarjetas').show();
+        });
+        $('#otrasPlataformas').click(function(){
+          $('#boton1').val('Pagar');
+          $('#boton1').show();
+          $('.boton-tarjetas').hide();
+          $('input[type=radio][name=otrospago]').change(function(){
+            $('#medio').val(this.value);
+          });
+        });
+
+        $('#boton1').click(function(scope){
+          event.preventDefault();
+          switch ($('#medio').val()) {
+            case 'acordarVendedor':
+              console.log('acordar');
+              var mail = $('#mail').val(),
+                  nombre = $('#nombre').val();
+              $.post( "gestion/PHPMailer/mail.php", { mail: mail, nombre: nombre })
+                .done(function(){
+                  alert('enviado');
+                });
+              break;
+            case 'mercadoPago':
+              window.open($('#mercadopago').val(), '_self');
+              break;
+            case 'tarjetas':
 
               break;
             case 'rapipago':
