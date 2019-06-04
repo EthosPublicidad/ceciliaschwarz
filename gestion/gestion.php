@@ -37,21 +37,21 @@ switch ($opcion) {
 		break;
     case 'login':			
 			$login = $gestionusuario->login($_REQUEST['usuario'],$_REQUEST['clave']);
-			var_dump($login);
+			
 			if($login){
 				$_SESSION['login'] = 'true';
 				$_SESSION['perfil'] = $login[0]['perfil'];
 				$_SESSION['apellidonombre'] = $login[0]['apellidonombre'];
 				$_SESSION['idusuario'] = $login[0]['id'];
 
-				// header('Location: ./inicio.php');
+				header('Location: ./inicio.php');
 			}else{
 
 				$_SESSION['login'] = 'false';
 				$_SESSION['perfil'] = '';
 				$_SESSION['msgerror'] = 'Usuario inexistente.';
 
-				// header('Location: ./index.php');
+				header('Location: ./index.php');
 			}
 		break;
     case 'altausuario':

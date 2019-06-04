@@ -43,6 +43,7 @@ if(empty($_REQUEST['idpedido'])){
     <!-- build:js vendors/vendors-compressed/modernizr.js -->
     <script src="vendors/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
 	   
   </head>
   <body>
@@ -345,43 +346,36 @@ if(empty($_REQUEST['idpedido'])){
                     <div class="card-body">
                       
                       <p>
-                        Titular de la Tarjeta: 
-                        <input data-checkout="cardholderName" type="text" style="background-color: white;" />
+                        <span>Titular de la Tarjeta:  </span>
+                        <input class="input-sm" data-checkout="cardholderName" type="text" style="background-color: white;" />
                       </p>
-                      <p>N&uacute;mero de Tarjeta: 
+                      <p><span>N&uacute;mero de Tarjeta: </span>
                         <input data-checkout="cardNumber" type="text" style="background-color: white;" />
                       </p>
                      
                       <p class="col-6">
-                        Mes de Expiraci&oacute;n: 
+                        <span>Mes de Expiraci&oacute;n:</span> 
                         <input data-checkout="cardExpirationMonth" type="text" style="background-color: white;" />
                       </p>
 
                       <p class="col-6">
-                        A&ntilde;o de Expiraci&oacute;n: 
+                        <span>A&ntilde;o de Expiraci&oacute;n: </span>
                         <input data-checkout="cardExpirationYear" type="text" style="background-color: white;" />
                       </p>
 
-                      <p class="col-6">C&oacute;digo de Seguridad: 
+                      <p class="col-6"><span>C&oacute;digo de Seguridad: </span>
                         <input data-checkout="securityCode" type="text" style="background-color: white;" />
                       </p>
                       
-                      <p class="col-6">N&uacute;mero de Documento: 
+                      <p class="col-6"><span>N&uacute;mero de Documento:</span>
                         <input data-checkout="docNumber" type="text" style="background-color: white;" />
                       </p>
 
                       <br><br> 
                       <input data-checkout="docType" type="hidden" value="DNI"/>
 
-                      <p id="issuersField">Bancos: <br />
-                        <select class="banco" name="banco" id="issuersOptions">
-                          <option value="">Seleccione...</option>
-                        </select>
-                      </p>
 
-                      <br /><br /><br />
-
-                      <p>Cuotas:<br />
+                      <p><span>Cuotas:</span>
                         <select class="cuota" name="cuota" id="installmentsOption">
                           <option value="">Seleccione...</option>
                         </select>
@@ -523,6 +517,77 @@ if(empty($_REQUEST['idpedido'])){
               window.open($('#mercadopago').val(), '_self');
               break;
             case 'tarjetas':
+              Mercadopago.setPublishableKey("TEST-b3d5b663-664a-4e8f-b759-de5d7c12ef8f");
+              var bin = getBin();
+
+              // Mercadopago.getInstallments({
+              //     "bin": bin,
+              //     "amount": amount
+              // }, setInstallmentInfo);
+
+              if (event.type == "keyup") {
+                  if (bin.length >= 6) {
+                      Mercadopago.getPaymentMethod({
+                          "bin": bin
+                      }, setPaymentMethodInfo);
+                  }
+              } else {
+                  setTimeout(function() {
+                      if (bin.length >= 6) {
+                          Mercadopago.getPaymentMethod({
+                              "bin": bin
+                          }, setPaymentMethodInfo);
+                      }
+                  }, 100);
+              }
+
+              function setPaymentMethodInfo(status, response) {
+                  if (status == 200) {
+                      const paymentMethodElement = document.querySelector('input[name=paymentMethodId]');
+
+                      if (paymentMethodElement) {
+                      paymentMethodElement.value = response[0].id;
+                      } else {
+                      const inputEl = document.createElement('input');
+                      inputEl.setattribute('name', 'paymentMethodId');
+                      inputEl.setAttribute('type', 'hidden');
+                      inputEl.setAttribute('value', response[0].id);     
+
+                      form.appendChild(inputEl);
+                      }
+                  } else {
+                      alert(`payment method info error: ${response}`);  
+                  }
+              };
+
+              doSubmit = false;
+              addEvent(document.querySelector('#pay'), 'submit', doPay);
+              function doPay(event){
+                  event.preventDefault();
+                  if(!doSubmit){
+                      var $form = document.querySelector('#pay');
+
+                      Mercadopago.createToken($form, sdkResponseHandler); // The function "sdkResponseHandler" is defined below
+
+                      return false;
+                  }
+              };
+
+              function sdkResponseHandler(status, response) {
+                  if (status != 200 && status != 201) {
+                      alert("verify filled data");
+                  }else{
+                      var form = document.querySelector('#pay');
+                      var card = document.createElement('input');
+                      card.setAttribute('name', 'token');
+                      card.setAttribute('type', 'hidden');
+                      card.setAttribute('value', response.id);
+                      form.appendChild(card);
+                      doSubmit=true;
+                      form.submit();
+                  }
+              };
+
               break;
             case 'rapipago':
               break;

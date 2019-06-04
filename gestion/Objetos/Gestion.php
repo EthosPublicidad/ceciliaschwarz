@@ -72,7 +72,7 @@ class Gestion extends Modelo
 	}
 
 	public function traerServicios(){
-		$result = $this->_db->query("SELECT * FROM servicio");
+		$result = $this->_db->query("SELECT s.nombre as nombre, s.precio, s.descripcion, c.nombre as categoria FROM servicio s INNER JOIN categoria_servicio c");
 		$respuesta = $result->fetch_all(MYSQLI_ASSOC);
 		return $respuesta;
 	}
