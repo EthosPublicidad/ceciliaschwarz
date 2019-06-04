@@ -29,7 +29,8 @@ if(empty($_REQUEST['idpedido'])){
     <title>:: Cecilia Schwarz 🍁| Compra Rápida ::</title>
     <link rel="shortcut icon" href="./favicon.png">
     <meta name="description" content="Aqua | Spa and Beauty HTML5 Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="assets/fonts/icon-fonts/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/fonts/icon-fonts/styles.css">
     <!-- build:css assets/styles/vendors-min.css -->
     <link rel="stylesheet" href="assets/styles/plugins.css">
     <link rel="stylesheet" href="vendors/flexslider/flexslider.css">
@@ -265,7 +266,7 @@ if(empty($_REQUEST['idpedido'])){
 											"items" => $items
 										);
 										# Opciones: sandbox_init_point o init_point 
-										$preference = $mp->create_preference ($preference_data);
+										$preference = $mp->create_preference($preference_data);
 
 										$total = number_format($total, 2);
 					}
@@ -291,7 +292,7 @@ if(empty($_REQUEST['idpedido'])){
 				  
 				  <!--/*accordion*/-->
 
-          <input type="hidden" id="mercadopago" value="<?=$preference['response']['init_point']?>" />
+          <input type="hidden" id="mercadopago" value="<?=$preference['response']['sandbox_init_point']?>" />
           <input type="hidden" id="medio" value="acordarVendedor">
           <input type="hidden" name="idpedido" value="<?=$_REQUEST['idpedido']?>"  />
           <input type="hidden" name="opcion" value="confirmarpago"  />
@@ -432,6 +433,15 @@ if(empty($_REQUEST['idpedido'])){
                   </div>
                   <div class="order-button-payment" id="bt">
                       <input id='boton1' value='Acordar' type='submit'>
+                      <div class="boton-tarjetas" style="display: none;">
+                        <form action="/procesar-pago" method="POST">
+                          <script
+                            src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
+                            data-public-key="TEST-89409118-68b2-4c6d-9ca7-1430e729b9b1"
+                            data-transaction-amount="100.00">
+                          </script>
+                        </form>
+                      </div>
                   </div>
                 </div>
               </div>			  
@@ -473,18 +483,25 @@ if(empty($_REQUEST['idpedido'])){
 
         $('#acordarVendedor').click(function(){
           $('#medio').val('acordarVendedor');
+          $('#boton1').show();
+          $('.boton-tarjetas').hide();
           $('#boton1').val('Acordar');
         });
         $('#mercadoPago').click(function(){
           $('#medio').val('mercadoPago');
+          $('#boton1').show();
+          $('.boton-tarjetas').hide();
           $('#boton1').val('Pagar');
         });
         $('#tarjetas').click(function(){
           $('#medio').val('tarjetas');
-          $('#boton1').val('Pagar');
+          $('#boton1').hide();
+          $('.boton-tarjetas').show();
         });
         $('#otrasPlataformas').click(function(){
           $('#boton1').val('Pagar');
+          $('#boton1').show();
+          $('.boton-tarjetas').hide();
           $('input[type=radio][name=otrospago]').change(function(){
             $('#medio').val(this.value);
           });
