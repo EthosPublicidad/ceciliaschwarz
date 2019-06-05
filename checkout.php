@@ -269,14 +269,36 @@ if(empty($_REQUEST['idpedido'])){
 										# Opciones: sandbox_init_point o init_point 
 										$preference = $mp->create_preference($preference_data);
 
-										$total = number_format($total, 2);
+                    // $pagofacil = new stdClass();
+                    // $pagofacil->default_payment_method_id = 'pagofacil';
+
+                    // $rapipago = new stdClass();
+                    // $rapipago->default_payment_method_id = 'rapipago';
+
+                    // $provnet = new stdClass();
+                    // $provnet->default_payment_method_id = 'bapropagos';
+
+                    // $redlink = new stdClass();
+                    // $redlink->default_payment_method_id = 'redlink';
+
+                    // $preference_pagofacil_data = array_merge($preference_data, array('payment_methods' => $pagofacil));
+                    // $preference_rapipago_data = array_merge($preference_data, array('payment_methods' => $rapipago));
+                    // $preference_provnet_data = array_merge($preference_data, array('payment_methods' => $provnet));
+                    // $preference_redlink_data = array_merge($preference_data, array('payment_methods' => $redlink));
+
+                    // $preference_pagofacil = $mp->create_preference($preference_pagofacil_data);
+                    // $preference_rapipago = $mp->create_preference($preference_rapipago_data);
+                    // $preference_provnet = $mp->create_preference($preference_provnet_data);
+                    // $preference_redlink = $mp->create_preference($preference_redlink_data);
+
+										$total = number_format($total + $precio, 2);
 					}
 					
 					?>
                 </div>
                 <div class="ro-footer">
                   <div>
-                    <p>Subtotal<span>$ <?php echo $precio;?></span></p>
+                    <p>Subtotal<span>$ <?php echo $total;?></span></p>
                     <div class="ro-divide"></div>
                   </div>
                   <div>
@@ -284,16 +306,20 @@ if(empty($_REQUEST['idpedido'])){
                     <div class="ro-divide"></div>
                   </div>
                   <div>
-                    <p>Total<span>$ <?php echo $precio;?></span></p>
+                    <p>Total<span>$ <?php echo $total;?></span></p>
                   </div>
                   <div>
-                    <p>Payment Due<span>$ <?php echo $precio;?></span></p>
+                    <p>Payment Due<span>$ <?php echo $total;?></span></p>
                   </div>
                 </div>
 				  
 				  <!--/*accordion*/-->
 
           <input type="hidden" id="mercadopago" value="<?=$preference['response']['sandbox_init_point']?>" />
+          <!-- <input type="hidden" id="pagofacil_preference" value="<?=$preference_pagofacil['response']['sandbox_init_point']?>" />
+          <input type="hidden" id="rapipago_preference" value="<?=$preference_rapipago['response']['sandbox_init_point']?>" />
+          <input type="hidden" id="provnet_preference" value="<?=$preference_provnet['response']['sandbox_init_point']?>" />
+          <input type="hidden" id="redlink_preference" value="<?=$preference_redlink['response']['sandbox_init_point']?>" /> -->
           <input type="hidden" id="medio" value="acordarVendedor">
           <input type="hidden" name="idpedido" value="<?=$_REQUEST['idpedido']?>"  />
           <input type="hidden" name="opcion" value="confirmarpago"  />
@@ -345,9 +371,11 @@ if(empty($_REQUEST['idpedido'])){
                   <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
 
+                      <img id="auxbutton" style="width: 100px;border:1px solid lightgray;height:70px;border-radius:15px;" src="assets/img/mercadopago.png">
+
                       <form action="" method="post" id="pay" name="pay">
                         
-                        <p>
+                        <!-- <p>
                           <span>Titular de la Tarjeta:  </span>
                           <input class="input-sm" data-checkout="cardholderName" type="text" style="background-color: white;" />
                         </p>
@@ -386,7 +414,7 @@ if(empty($_REQUEST['idpedido'])){
                           </select>
                         </p>
 
-                        <input type="hidden" name="paymentMethodId" />
+                        <input type="hidden" name="paymentMethodId" /> -->
 
                       </form>
 
@@ -441,7 +469,7 @@ if(empty($_REQUEST['idpedido'])){
                           <script
                             src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
                             data-public-key="TEST-1b30b32a-7cc1-4991-b60d-8d0cb7005877"
-                            data-transaction-amount="<?php echo $precio; ?>">
+                            data-transaction-amount="<?php echo $total; ?>">
                           </script>
                         </form>
                       </div>
@@ -497,78 +525,6 @@ if(empty($_REQUEST['idpedido'])){
           $('#boton1').val('Pagar');
         });
         $('#tarjetas').click(function(){
-          Mercadopago.setPublishableKey("TEST-1b30b32a-7cc1-4991-b60d-8d0cb7005877");
-              Mercadopago.getIdentificationTypes();
-
-              var bin = getBin();
-
-              // Mercadopago.getInstallments({
-              //     "bin": bin,
-              //     "amount": amount
-              // }, setInstallmentInfo);
-
-              if (event.type == "keyup") {
-                  if (bin.length >= 6) {
-                      Mercadopago.getPaymentMethod({
-                          "bin": bin
-                      }, setPaymentMethodInfo);
-                  }
-              } else {
-                  setTimeout(function() {
-                      if (bin.length >= 6) {
-                          Mercadopago.getPaymentMethod({
-                              "bin": bin
-                          }, setPaymentMethodInfo);
-                      }
-                  }, 100);
-              }
-
-              function setPaymentMethodInfo(status, response) {
-                  if (status == 200) {
-                      const paymentMethodElement = document.querySelector('input[name=paymentMethodId]');
-
-                      if (paymentMethodElement) {
-                      paymentMethodElement.value = response[0].id;
-                      } else {
-                      const inputEl = document.createElement('input');
-                      inputEl.setattribute('name', 'paymentMethodId');
-                      inputEl.setAttribute('type', 'hidden');
-                      inputEl.setAttribute('value', response[0].id);     
-
-                      form.appendChild(inputEl);
-                      }
-                  } else {
-                      alert(`payment method info error: ${response}`);  
-                  }
-              };
-
-              doSubmit = false;
-              addEvent(document.querySelector('#pay'), 'submit', doPay);
-              function doPay(event){
-                  event.preventDefault();
-                  if(!doSubmit){
-                      var $form = document.querySelector('#pay');
-
-                      Mercadopago.createToken($form, sdkResponseHandler); // The function "sdkResponseHandler" is defined below
-
-                      return false;
-                  }
-              };
-
-              function sdkResponseHandler(status, response) {
-                  if (status != 200 && status != 201) {
-                      alert("verify filled data");
-                  }else{
-                      var form = document.querySelector('#pay');
-                      var card = document.createElement('input');
-                      card.setAttribute('name', 'token');
-                      card.setAttribute('type', 'hidden');
-                      card.setAttribute('value', response.id);
-                      form.appendChild(card);
-                      doSubmit=true;
-                      form.submit();
-                  }
-              };
           $('#medio').val('tarjetas');
           $('#boton1').hide();
           $('.boton-tarjetas').show();
@@ -591,22 +547,23 @@ if(empty($_REQUEST['idpedido'])){
                   nombre = $('#nombre').val();
               $.post( "gestion/PHPMailer/mail.php", { mail: mail, nombre: nombre })
                 .done(function(){
-                  alert('enviado');
+                  swal('Se ha notificado a nuestro equipo de tu compra. Te contactaremos a la brevedad.');
                 });
               break;
             case 'mercadoPago':
               window.open($('#mercadopago').val(), '_self');
               break;
-            case 'tarjetas':
-
-              break;
             case 'rapipago':
+            window.open($('#mercadopago').val(), '_self');
               break;
             case 'pagofacil':
+            window.open($('#mercadopago').val(), '_self');
               break;
             case 'provnet':
+            window.open($('#mercadopago').val(), '_self');
               break;
             case 'redlink':
+            window.open($('#mercadopago').val(), '_self');
               break;
           }
         });

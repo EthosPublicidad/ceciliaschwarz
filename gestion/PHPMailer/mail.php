@@ -1,10 +1,15 @@
 <?php
+session_start();
 /**
  * This example shows sending a message using PHP's mail() function.
  */
 
 require 'PHPMailerAutoload.php';
+require_once '../Objetos/Gestion.php';
 
+$gestion = new Gestion();
+
+$gestion->vaciar();
 
 //Create a new PHPMailer instance
 $mail = new PHPMailer;
