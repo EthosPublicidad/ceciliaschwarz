@@ -356,7 +356,7 @@ if(empty($_REQUEST['idpedido'])){
                   </div>
                   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
-                      <img id="auxbutton" style="width: 100px;border:1px solid lightgray;height:70px;border-radius:15px;" src="assets/img/mercadopago.png">
+                      <img class="center-block" id="auxbutton" style="width: 100px;border:1px solid lightgray;height:70px;border-radius:15px;" src="assets/img/mercadopago.png">
                     </div>
                   </div>
                 </div>
@@ -371,7 +371,7 @@ if(empty($_REQUEST['idpedido'])){
                   <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
 
-                      <img id="auxbutton" style="width: 100px;border:1px solid lightgray;height:70px;border-radius:15px;" src="assets/img/mercadopago.png">
+                      <img class="center-block" id="auxbutton" style="width: 100px;border:1px solid lightgray;height:70px;border-radius:15px;" src="assets/img/mercadopago.png">
 
                       <form action="" method="post" id="pay" name="pay">
                         

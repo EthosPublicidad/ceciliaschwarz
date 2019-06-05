@@ -50,7 +50,7 @@
 				      		<img alt='' src='img/productos/$productocarrito[id]/$productocarrito[foto]' style='max-width: 70px; '> 
 				      	</div>
 						<div class='cart-content'>
-							<h6 class='titlemenu'> Nombre del producto </h6>
+							<h6 class='titlemenu'> $productocarrito[descripcion] </h6>
 						 <span class='quantitys'> Cantidad: <span id='canti'> 1 
 							 -</span> </span>
 							<span> $$precio </span>
@@ -73,7 +73,7 @@
 					 
 					 <div class="cart-actions">
 						 <a href="checkout.php"> Comprar</a>
-						  <a href="cart.html"> Ver Carrito </a>
+						  <a href="cart.php"> Ver Carrito </a>
 					 </div>
 					  
                   </div>
