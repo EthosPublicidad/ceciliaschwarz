@@ -62,7 +62,7 @@
            
             </div>
 			  <div class="cart-content shop-content">
-				<a href="cart.html">
+				<a href="cart.php">
               <div data-content=<?php if(!empty($_SESSION['pedido'])){echo count($_SESSION['pedido']);}else{echo "0";}?> class="ro-cart"><i class="icon-ecommerce-cart-content"></i></div></a>
 				  
 				  <div class="main-cart-box main-cart-shop">
@@ -83,7 +83,7 @@
 					 
 					 <div class="cart-actions">
 						 <a href="checkout.php"> Comprar</a>
-						  <a href="cart.html"> Ver Carrito </a>
+						  <a href="cart.php"> Ver Carrito </a>
 					 
 					 </div>
 					  
@@ -297,7 +297,7 @@
                 <div class="ro-product-image">
                   <div id="Ro_zoom_image" class="ro-image"><img src="assets/images/product-img-large.jpg" data-zoom-image="assets/images/product-img-large.jpg" alt="Product Item" class="ro-zoom-image-0"/></div>
                   <div class="ro-footer clearfix"><a href="checkout.html">
-                      <div>COMPRAR</div></a><a href="cart.html">
+                      <div>COMPRAR</div></a><a href="cart.php">
                       <div>+ CARRITO</div></a>
                   </div>
                 </div>

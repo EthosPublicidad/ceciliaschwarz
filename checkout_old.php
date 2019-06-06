@@ -68,7 +68,7 @@ require_once "./gestion/Objetos/Gestion.php";
                   </ul>
                 </div>
               </div>
-            </div><a href="cart.html">
+            </div><a href="cart.php">
               <div data-content=<?php if(!empty($_SESSION['pedido'])){echo count($_SESSION['pedido']);}else{echo "0";}?> class="ro-cart"><i class="icon-ecommerce-cart-content"></i></div></a>
           </div>
         </div>

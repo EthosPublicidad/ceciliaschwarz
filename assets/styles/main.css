@@ -4412,9 +4412,14 @@ margin-top: 120px;
 .ro-section-cart .ro-cart-form .ro-cart-table table tbody .ro-cart-item.ro-product-2 .ro-item-color label.ro-type-3 input[type="radio"] + span:before {
   background-color: #444444; }
 
-.ro-section-cart .ro-cart-form .ro-button {
+.ro-section-cart .ro-cart-form {
   margin-top: 70px;
   margin-bottom: 80px; }
+
+ .ro-button {
+  margin-top: 150px;
+  margin-bottom: 80px; }
+
   .ro-section-cart .ro-cart-form .ro-button a {
     transition: all 0.4s;
     font-size: 14px;
