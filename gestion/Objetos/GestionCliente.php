@@ -24,6 +24,20 @@ class GestionCliente extends Modelo
             return false;
         }
     } 
+
+    public function modificarCliente($id, $apellidonombre, $mail, $telefono) 
+    {
+        $this->_db->query("UPDATE cliente 
+                           SET  apellidonombre = '$apellidonombre', mail = '$mail', telefono = '$telefono' 
+                           WHERE id = $id");
+        if($this->_db->error){
+            $msg = $this->_db->error;       
+        }else{
+            $msg = 'Edición satisfactoria';         
+        }
+        $this->_db->close();
+        return $msg; 
+    }
     
 }
 ?>

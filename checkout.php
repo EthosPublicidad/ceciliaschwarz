@@ -576,7 +576,7 @@ if(empty($_REQUEST['idpedido'])){
 		  
     	  $(".coupon-accordion h3").click(function(){
     		
-           var contenido=$(this).nextAll(".coupon-content");
+           var contenido = $(this).nextAll(".coupon-content");
         			
            if(contenido.css("display")=="none"){ //open		
               contenido.slideDown(350);			

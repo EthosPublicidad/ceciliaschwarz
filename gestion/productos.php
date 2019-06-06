@@ -167,7 +167,7 @@
 						</div>
 						<div class="modal-body" style="display: inline-block;">
 							<div class="col-md-6 col-sm-6 text-left">
-								<label>Descripcion</label>
+								<label>Descripción</label>
 								<input name="descripcion" id="descripcion" placeholder="Descripcion" class="form-control" required="required" />
 							</div>
 							<div class="col-md-6 col-sm-6 text-left">
@@ -175,7 +175,7 @@
 								<input name="precio" id="precio" placeholder="Precio" type="text" class="form-control" required="required" />
 							</div>
 							<div class="col-md-6 col-sm-6 text-left">
-								<label>Categoria</label>
+								<label>Categoría</label>
 								<select name="categoria" id="categoria" class="form-control">
 									<?php 
 										$categorias = $gestioncategoria->traerCategorias();

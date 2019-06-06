@@ -70,7 +70,7 @@
 					<form autocomplete="off" class="formModal" action="gestion.php" method="post" enctype="multipart/form-data">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-							<h4 class="modal-title" id="myModalLabel">Editar Producto</h4>
+							<h4 class="modal-title" id="myModalLabel">Editar Cliente</h4>
 						</div>
 						<div class="modal-body" style="display: inline-block;">
 							<div class="col-md-12 col-sm-12 text-left">
@@ -82,7 +82,7 @@
 								<input name="mail" id="mail" placeholder="Email" type="email" class="form-control" required="required" />
 							</div>
 							<div class="col-md-6 col-sm-6 text-left">
-								<label>Telefono</label>
+								<label>Teléfono</label>
 								<input name="telefono" id="telefono" placeholder="Telefono" type="text" class="form-control" required="required" />
 							</div>
 						</div>
@@ -170,9 +170,9 @@
 		function editar(apellidonombre, mail, telefono, id){
 			$('#modalEdicion').modal('show');
 
-			$('#apellidonombre').val(desc);
-			$('#mail').val(precio);
-			$('#telefono').val(categoria);
+			$('#apellidonombre').val(apellidonombre);
+			$('#mail').val(mail);
+			$('#telefono').val(telefono);
 			$('#idcliente').val(id);
 		}
 		</script>

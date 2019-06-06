@@ -103,7 +103,7 @@ class GestionProducto extends Modelo
 		if($this->_db->error){
 			$msg = $this->_db->error; 		
 		}else{
-			$msg = 'Edicion satisfactoria'; 		
+			$msg = 'Edición satisfactoria'; 		
 		}
 		$this->_db->close();
    		return $msg; 

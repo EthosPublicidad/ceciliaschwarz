@@ -9,11 +9,15 @@ require_once "Objetos/GestionUsuario.php";
 require_once "Objetos/Usuario.php";
 require_once "Objetos/GestionProducto.php";
 require_once "Objetos/Producto.php";
+require_once "Objetos/GestionCliente.php";
+require_once "Objetos/Cliente.php";
+
 
 $gestionproducto = new GestionProducto();
 $gestionusuario = new GestionUsuario();
 $gestioncategoria = new GestionCategoria();
 $gestionsubcategoria = new GestionSubcategoria();
+$gestioncliente = new GestionCliente();
 
 $opcion = $_REQUEST['opcion'];
 
@@ -75,6 +79,11 @@ switch ($opcion) {
 		$msg = $gestionusuario->activar($_REQUEST['id']);
 		$_SESSION['msg'] = $msg;
 		header('Location: ./usuarios.php');
+	break;
+	case 'editarcliente':
+		$msg = $gestioncliente->modificarCliente($_REQUEST['id'],$_REQUEST['apellidonombre'],$_REQUEST['mail'],$_REQUEST['telefono']);
+		$_SESSION['msg'] = $msg;
+		header('Location: ./clientes.php');
 	break;
     case 'altacategoria':
 		$categoria = new Categoria($_REQUEST['descripcion']);

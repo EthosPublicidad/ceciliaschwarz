@@ -47,36 +47,36 @@
                 <form name="reservation" method="post" action="phpscript/reservation.php" class="ro-form ro-reservation-form clearfix">
                   <div class="row">
                     <div class="col-md-6">
-                      <input type="text" placeholder="Nombre" name="name" required="required"/>
+                      <input type="text" placeholder="Nombre" name="nombre" required="required"/>
                       <input type="email" placeholder="Email" name="email" required="required"/>
                     </div>
                     <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-7">
-                          <input type="text" name="date" placeholder="Día" required="required" class="ro-date-picker"/>
+                          <input type="text" id="dia" name="date" placeholder="Día" required="required" class="ro-date-picker"/>
                         </div>
 						<div class="col-md-5">
-                          <select name="hour">
+                          <select id="hora" name="hour">
                             <option value="Morning">10:00 hs</option>
                             <option value="Morning">10.30 hs</option>
                             <option value="Evening">11:00 hs</option>
-							<option value="Morning">11:30 hs</option>
-							<option value="Morning">12:00 hs</option>
-							<option value="Afernoon">12:30 hs</option>
-							<option value="Afernoon">13:00 hs</option>
-							<option value="Afernoon">13:30 hs</option>
-							<option value="Afernoon">14:00 hs</option>
-							<option value="Afernoon">14:30 hs</option>
-							<option value="Afernoon">15:00 hs</option>
-							<option value="Afernoon">15:30 hs</option>
-							<option value="Afernoon">16:00 hs</option>
-							<option value="Afernoon">16:30 hs</option>
-							<option value="Afernoon">17:00 hs</option>
-							<option value="Afernoon">17:30 hs</option>
-							<option value="Afernoon">18:00 hs</option>
-							<option value="Afernoon">18:30 hs</option>
-							<option value="Afernoon">19:00 hs</option>
-							<option value="Afernoon">19:30 hs</option>
+              							<option value="Morning">11:30 hs</option>
+              							<option value="Morning">12:00 hs</option>
+              							<option value="Afernoon">12:30 hs</option>
+              							<option value="Afernoon">13:00 hs</option>
+              							<option value="Afernoon">13:30 hs</option>
+              							<option value="Afernoon">14:00 hs</option>
+              							<option value="Afernoon">14:30 hs</option>
+              							<option value="Afernoon">15:00 hs</option>
+              							<option value="Afernoon">15:30 hs</option>
+              							<option value="Afernoon">16:00 hs</option>
+              							<option value="Afernoon">16:30 hs</option>
+              							<option value="Afernoon">17:00 hs</option>
+              							<option value="Afernoon">17:30 hs</option>
+              							<option value="Afernoon">18:00 hs</option>
+              							<option value="Afernoon">18:30 hs</option>
+              							<option value="Afernoon">19:00 hs</option>
+              							<option value="Afernoon">19:30 hs</option>
 							
                           </select>
                         </div>
@@ -85,10 +85,10 @@
                     <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-7">
-                          <input type="tel" placeholder="Teléfono" name="teléfono" required="required"/>
+                          <input type="tel" id="telefono" placeholder="Teléfono" name="telefono" required="required"/>
                         </div>
                         <div class="col-md-5">
-                          <input type="submit" value="RESERVA" class="ro-btn-2 ro-submit"/>
+                          <input id='reservar' type="submit" value="RESERVA" class="ro-btn-2 ro-submit"/>
                         </div>
                       </div>
                     </div>

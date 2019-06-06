@@ -24,7 +24,7 @@ class GestionSubcategoria extends Modelo
 		if($this->_db->error){
 			$msg = $this->_db->error; 		
 		}else{
-			$msg = 'Edicion satisfactoria'; 		
+			$msg = 'Edición satisfactoria'; 		
 		}
 		$this->_db->close();
    		return $msg; 
@@ -42,7 +42,7 @@ class GestionSubcategoria extends Modelo
 
     public function activar($id) 
     {
-		$msg = 'Activacion satisfactoria';
+		$msg = 'Activación satisfactoria';
 		$this->_db->query("UPDATE subcategoria 
 						   SET  estado = 'A' 
 						   WHERE id = $id ") or die($this->_db->error);
