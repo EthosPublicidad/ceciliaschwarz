@@ -58,16 +58,25 @@ class Gestion extends Modelo
 		}		
 		return $arrayfinal;
 	}
+	
 	public function traerClientes(){
 		$result = $this->_db->query("SELECT * FROM cliente ORDER BY apellidonombre DESC"); 
 		$respuesta = $result->fetch_all(MYSQLI_ASSOC);
 		return $respuesta;
 	}
+
 	public function traerPedidos(){
 		$result = $this->_db->query("SELECT p.*, c.apellidonombre as cliente, c.mail as clientemail, c.telefono as clientetelefono FROM pedido p, cliente c WHERE p.idcliente = c.id ORDER BY id DESC"); 
 		$respuesta = $result->fetch_all(MYSQLI_ASSOC);
 		return $respuesta;
 	}
+
+	public function traerServicios(){
+		$result = $this->_db->query("SELECT s.nombre as nombre, s.precio, s.descripcion, c.nombre as categoria FROM servicio s INNER JOIN categoria_servicio c");
+		$respuesta = $result->fetch_all(MYSQLI_ASSOC);
+		return $respuesta;
+	}
+
 	public function crearPedido($idcliente, $total, $comentarios, $fecha) 
     {	
 		$this->_db->query("INSERT INTO pedido (idcliente, total, comentarios, fecha, estadopago) 

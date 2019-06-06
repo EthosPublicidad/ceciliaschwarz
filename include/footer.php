@@ -36,7 +36,7 @@
                 <form method="post" action="MailChimpApi.php">
                   <h5>OFERTAS / BOLETIN ONLINE 🍁</h5>
                   <div class="ro-footer-newletter">
-                    <input type="text" name="cadena" autocomplete="off" id="mc-email"><button id="mc-submit" class="ro-btn-bd-1 hvr-radial-out"><i class="icon-basic-mail-open-text"></i></button>
+                    <input type="text" name="cadena" autocomplete="off" id="mc-email" placeholder="Nombre, mail"><button id="mc-submit" class="ro-btn-bd-1 hvr-radial-out"><i class="icon-basic-mail-open-text"></i></button>
                   </div>
                 </form>
                 <ul class="ro-social">

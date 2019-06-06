@@ -18,6 +18,7 @@ if(empty($_REQUEST['idpedido'])){
 
 // PRODUCCION
  $mp = new MP ("4630512487347499", "UZ4OaABJTLkB8ioZwPOZhMjfAoXOUJuh");
+
 ?>
 <!DOCTYPE html>
 <html class="no-js">
@@ -25,10 +26,11 @@ if(empty($_REQUEST['idpedido'])){
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>:: Cecilia Schwarz 🍁| Compra Rapida ::</title>
+    <title>:: Cecilia Schwarz 🍁| Compra Rápida ::</title>
     <link rel="shortcut icon" href="./favicon.png">
     <meta name="description" content="Aqua | Spa and Beauty HTML5 Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="assets/fonts/icon-fonts/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/fonts/icon-fonts/styles.css">
     <!-- build:css assets/styles/vendors-min.css -->
     <link rel="stylesheet" href="assets/styles/plugins.css">
     <link rel="stylesheet" href="vendors/flexslider/flexslider.css">
@@ -41,6 +43,7 @@ if(empty($_REQUEST['idpedido'])){
     <!-- build:js vendors/vendors-compressed/modernizr.js -->
     <script src="vendors/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
 	   
   </head>
   <body>
@@ -130,8 +133,7 @@ if(empty($_REQUEST['idpedido'])){
 					  
 					  <p class="form-row-first">
                      <label>Apellido<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="emailc" value="
-                      <?php echo $_SESSION['mail']; ?>">
+                      <input type="text" id="apellido" name="apellido">
                      </p> 
 					  </div>
                   </div>
@@ -141,12 +143,14 @@ if(empty($_REQUEST['idpedido'])){
                     <div class="cont-input">
 					 <p class="form-row-first">
                      <label>Email<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="mail">
+                      <input type="text" id="mail" name="mail" value="
+                      <?php echo $_SESSION['mail']; ?>">
                      </p> 
 					  
 					  <p class="form-row-first">
                      <label>Dirección<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="direccion">
+                      <input type="text" id="dire" name="direccion" value="
+                      <?php echo $_SESSION['direccion']; ?>">
                      </p> 
 					  </div>
                   </div>
@@ -156,12 +160,14 @@ if(empty($_REQUEST['idpedido'])){
                     <div class="cont-input">
 					 <p class="form-row-first">
                      <label>Provincia<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="barrio">
+                      <input type="text" id="prov" name="barrio" value="
+                      <?php echo $_SESSION['provincia']; ?>">
                      </p> 
 					  
 					  <p class="form-row-first">
                      <label>Ciudad *<span class="required"></span></label>
-                      <input type="text" id="emailCheck" name="ciudad">
+                      <input type="text" id="ciudad" name="ciudad" value="
+                      <?php echo $_SESSION['ciudad']; ?>">
                      </p> 
 					  </div>
                   </div>
@@ -170,12 +176,13 @@ if(empty($_REQUEST['idpedido'])){
                     <div class="cont-input">
 					 <p class="form-row-first">
                      <label>Codigo Postal<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="emailc">
+                      <input type="text" id="codpost" name="codpost" value="
+                      <?php echo $_SESSION['codigo_postal']; ?>">
                      </p> 
 					  
 					  <p class="form-row-first">
                      <label>Teléfono<span class="required">*</span></label>
-                      <input type="text" id="emailCheck" name="telefono" value="
+                      <input type="text" id="tel" name="telefono" value="
                       <?php echo $_SESSION['telefono']; ?>">
                      </p> 
 					  </div>
@@ -247,7 +254,7 @@ if(empty($_REQUEST['idpedido'])){
 												
 												# Opciones: TRUE o FALSE 
 
-										$mp->sandbox_mode(FALSE);
+										$mp->sandbox_mode(TRUE);
 										$_REQUEST['idpedido'] = 1;
 										$back = array(
 											//Redireccionamientos segun resultados
@@ -260,16 +267,38 @@ if(empty($_REQUEST['idpedido'])){
 											"items" => $items
 										);
 										# Opciones: sandbox_init_point o init_point 
-										$preference = $mp->create_preference ($preference_data);
+										$preference = $mp->create_preference($preference_data);
 
-										$total = number_format($total, 2);
+                    // $pagofacil = new stdClass();
+                    // $pagofacil->default_payment_method_id = 'pagofacil';
+
+                    // $rapipago = new stdClass();
+                    // $rapipago->default_payment_method_id = 'rapipago';
+
+                    // $provnet = new stdClass();
+                    // $provnet->default_payment_method_id = 'bapropagos';
+
+                    // $redlink = new stdClass();
+                    // $redlink->default_payment_method_id = 'redlink';
+
+                    // $preference_pagofacil_data = array_merge($preference_data, array('payment_methods' => $pagofacil));
+                    // $preference_rapipago_data = array_merge($preference_data, array('payment_methods' => $rapipago));
+                    // $preference_provnet_data = array_merge($preference_data, array('payment_methods' => $provnet));
+                    // $preference_redlink_data = array_merge($preference_data, array('payment_methods' => $redlink));
+
+                    // $preference_pagofacil = $mp->create_preference($preference_pagofacil_data);
+                    // $preference_rapipago = $mp->create_preference($preference_rapipago_data);
+                    // $preference_provnet = $mp->create_preference($preference_provnet_data);
+                    // $preference_redlink = $mp->create_preference($preference_redlink_data);
+
+										$total = number_format($total + $precio, 2);
 					}
 					
 					?>
                 </div>
                 <div class="ro-footer">
                   <div>
-                    <p>Subtotal<span>$ <?php echo $precio;?></span></p>
+                    <p>Subtotal<span>$ <?php echo $total;?></span></p>
                     <div class="ro-divide"></div>
                   </div>
                   <div>
@@ -277,162 +306,192 @@ if(empty($_REQUEST['idpedido'])){
                     <div class="ro-divide"></div>
                   </div>
                   <div>
-                    <p>Total<span>$ <?php echo $precio;?></span></p>
+                    <p>Total<span>$ <?php echo $total;?></span></p>
                   </div>
                   <div>
-                    <p>Payment Due<span>$ <?php echo $precio;?></span></p>
+                    <p>Payment Due<span>$ <?php echo $total;?></span></p>
                   </div>
                 </div>
 				  
 				  <!--/*accordion*/-->
 
-          <input type="hidden" name="mercadopago" value="<?=$preference['response']['init_point']?>" />
-          <input type="hidden" name="tipodepago" id="tipodepago"  />
+          <input type="hidden" id="mercadopago" value="<?=$preference['response']['sandbox_init_point']?>" />
+          <!-- <input type="hidden" id="pagofacil_preference" value="<?=$preference_pagofacil['response']['sandbox_init_point']?>" />
+          <input type="hidden" id="rapipago_preference" value="<?=$preference_rapipago['response']['sandbox_init_point']?>" />
+          <input type="hidden" id="provnet_preference" value="<?=$preference_provnet['response']['sandbox_init_point']?>" />
+          <input type="hidden" id="redlink_preference" value="<?=$preference_redlink['response']['sandbox_init_point']?>" /> -->
+          <input type="hidden" id="medio" value="acordarVendedor">
           <input type="hidden" name="idpedido" value="<?=$_REQUEST['idpedido']?>"  />
           <input type="hidden" name="opcion" value="confirmarpago"  />
 				  
 				  <div class="payment-method">
             <div class="payment-accordion">
-                <div id="accordion">
-                    <div class="card">
-                        <div class="card-header" id="#payment-1">
-                            <h5 class="panel-title">
-                                <a onclick="enviar('ACORDAR');" class="activac" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="acove">
-                                    Acordar con el vendedor.
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                            <div class="card-body">
-                                <p>Se te envía el pedido con todos los datos de cuenta de nosotros para que nos hagas una transferencia</p>
-                            </div>
-                        </div>
+
+              <div class="accordion" id="accordionExample">
+
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="acordarVendedor">
+                        Acordar con el vendedor.
+                      </button>
+                    </h2>
+                  </div>
+
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <p class="mt-3">
+                        Se te envía el pedido con todos los datos de cuenta de nosotros para que nos hagas una transferencia
+                      </p>
                     </div>
-                    
-                    <div class="card">
-                    
-                        <div class="card-header" id="#payment-4" class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                            <h5 class="panel-title">
-                                    MercadoPago
-                            </h5>
-                        </div>
-                        <div id="collapseFour" class="collapse show" data-parent="#accordion">
-                            <div class="card-body">
-                            <div class="col-md-12">
-                                <div id="smh">
-                                  <a onclick="enviar('MP');">
-                                    <img id="auxbutton" style="width: 100px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/mercadopago.png">
-                                  </a>
-                                  <input type="hidden" value="false" id="mptrue">
-                                </div>
-                                        
-                                </div>
-                            </div>
-                        </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="mercadoPago">
+                        MercadoPago
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <img class="center-block" id="auxbutton" style="width: 100px;border:1px solid lightgray;height:70px;border-radius:15px;" src="assets/img/mercadopago.png">
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="tarjetas">
+                        Tárjetas de crédito / débito (Mercado Pago)
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+
+                      <img class="center-block" id="auxbutton" style="width: 100px;border:1px solid lightgray;height:70px;border-radius:15px;" src="assets/img/mercadopago.png">
+
+                      <form action="" method="post" id="pay" name="pay">
                         
+                        <!-- <p>
+                          <span>Titular de la Tarjeta:  </span>
+                          <input class="input-sm" data-checkout="cardholderName" type="text" style="background-color: white;" />
+                        </p>
+                        <p><span>N&uacute;mero de Tarjeta: </span>
+                          <input data-checkout="cardNumber" type="text" style="background-color: white;" />
+                        </p>
+                       
+                        <p class="col-6">
+                          <span>Mes de Expiraci&oacute;n:</span> 
+                          <input data-checkout="cardExpirationMonth" type="text" style="background-color: white;" />
+                        </p>
+
+                        <p class="col-6">
+                          <span>A&ntilde;o de Expiraci&oacute;n: </span>
+                          <input data-checkout="cardExpirationYear" type="text" style="background-color: white;" />
+                        </p>
+
+                        <p class="col-6"><span>C&oacute;digo de Seguridad: </span>
+                          <input data-checkout="securityCode" type="text" style="background-color: white;" />
+                        </p>
+
+                        <p class="col-6"><span>Tipo de documento:</span>
+                          <select id="docType" data-checkout="docType"></select>
+                        </p>
+                        
+                        <p class="col-6"><span>N&uacute;mero de Documento:</span>
+                          <input data-checkout="docNumber" type="text" style="background-color: white;" />
+                        </p>
+
+                        <br><br> 
+
+
+                        <p><span>Cuotas:</span>
+                          <select class="cuota" name="cuota" id="installmentsOption">
+                            <option value="">Seleccione...</option>
+                          </select>
+                        </p>
+
+                        <input type="hidden" name="paymentMethodId" /> -->
+
+                      </form>
+
                     </div>
-                    
-                    <div class="card">
-                        <div class="card-header" id="#payment-2">
-                            <h5 class="panel-title">
-                                <a class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="tdc">
-                                    Tárjetas de crédito / débito (Mercado Pago)
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                    <input type="hidden" name="nombre" id="nombreMP" value="<?php// echo $this->session->userdata('nombre');?>">
-                                    <input type="hidden" name="apellido" id="apellidoMP" value="<?php// echo $this->session->userdata('apellido');?>">
-                                    <input type="hidden" name="email" id="emailMP" value="<?php //echo $this->session->userdata('email');?>">
-                                    <input type="hidden" name="direccion1" id="dir1MP" value="<?php //echo $this->session->userdata('direccion1');?>">
-                                    <input type="hidden" name="direccion2" id="dir2MP" value="<?php //echo $this->session->userdata('direccion2');?>">
-                                    <input type="hidden" name="provincia" id="provinciaMP" value="<?php //echo $this->session->userdata('provincia');?>">
-                                    <input type="hidden" name="localidad" id="localidadMP" value="<?php //echo $this->session->userdata('localidad');?>">
-                                    <input type="hidden" name="codigo_postal" id="cpMP" value="<?php //echo $this->session->userdata('codigo_postal');?>">
-                                    <input type="hidden" name="telefono" id="telefonoMP" value="<?php //echo $this->session->userdata('telefono');?>">
-                                    <input type="hidden" name="textar" id="txtar2">
-                                    <input type="hidden" name="chebo" id="cheboMP">
-                                    <input type="hidden" name="clave1" id="clave1MP">
-                                    <input type="hidden" name="clave2" id="clave2MP">
-                                    <input type="hidden" name="contadore" value="<?php echo $contaCart; ?>">
-                                    <input type="hidden" name="tipo" value="mercadopago">
-                                    <input id="ce" type="hidden" name="costo_envio" value="<?php echo $montoenvio; ?>"/>
-                                    <input id="amount" type="hidden" name="totale" value="<?php echo $u; ?>"/>
-				  <p>Titular de la Tarjeta: <input data-checkout="cardholderName" type="text" style="background-color: white;" /></p>
-                                      <p>N&uacute;mero de Tarjeta: <input data-checkout="cardNumber" type="text" style="background-color: white;" /></p>
-                                     
-                                      <p class="col-6">Mes de Expiraci&oacute;n: <input data-checkout="cardExpirationMonth" type="text" style="background-color: white;" /></p>
-                                      <p class="col-6">A&ntilde;o de Expiraci&oacute;n: <input data-checkout="cardExpirationYear" type="text" style="background-color: white;" /></p>
-				 <p class="col-6">C&oacute;digo de Seguridad: <input data-checkout="securityCode" type="text" style="background-color: white;" /></p>
-                                      
-                                      <p class="col-6">N&uacute;mero de Documento: <input data-checkout="docNumber" type="text" style="background-color: white;" /></p>
-                                      <br> <br> 
-                                      <input data-checkout="docType" type="hidden" value="DNI"/>
-                                      <p id="issuersField">Bancos: <br /><select class="banco" name="banco" id="issuersOptions"><option value="">Seleccione...</option></select></p><br /><br /><br />
-                                      <p>Cuotas:<br /><select class="cuota" name="cuota" id="installmentsOption"><option value="">Seleccione...</option></select></p>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="#payment-3">
-                            <h5 class="panel-title">
-                                <a class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="otras">
-                                    Otras Plataformas
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapseThree" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                <div class="row" >
-                                    <div class="col-md-3">
-                                        <label>
-                                        <input type="radio" name="otrospago" value="rapipago" />
-                                            <img style="width: 80px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/rapipago.jpg">
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label>
-                                            <input type="radio" name="otrospago" value="pagofacil" onclick='vselect(this.value)' />
-                                            <img style="width: 100px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/pagofacil.jpg">
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label>
-                                            <input type="radio" name="otrospago" value="provnet" onclick='vselect(this.value)' />
-                                            <img style="width: 80px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/provnet.png">
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label>
-                                            <input type="radio" name="otrospago" value="redlink" onclick='vselect(this.value)' />
-                                            <img style="width: 75px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/redlink.jpg">
-                                        </label>
-                                    </div>
-                                <input type="hidden" id="presult">
-                                </div>                            
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-                
-                <div class="order-button-payment" id="bt">
-                    <input id='boton1' value='Acordar' type='submit' form='pay'>
+                <div class="card">
+                  <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" id="otrasPlataformas">
+                        Otras Plataformas
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <div class="row" >
+                          <div class="col-md-3">
+                              <label>
+                              <input type="radio" name="otrospago" value="rapipago" />
+                                  <img style="width: 80px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/rapipago.jpg">
+                              </label>
+                          </div>
+                          <div class="col-md-3">
+                              <label>
+                                  <input type="radio" name="otrospago" value="pagofacil" onclick='vselect(this.value)' />
+                                  <img style="width: 100px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/pagofacil.jpg">
+                              </label>
+                          </div>
+                          <div class="col-md-3">
+                              <label>
+                                  <input type="radio" name="otrospago" value="provnet" onclick='vselect(this.value)' />
+                                  <img style="width: 80px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/provnet.png">
+                              </label>
+                          </div>
+                          <div class="col-md-3">
+                              <label>
+                                  <input type="radio" name="otrospago" value="redlink" onclick='vselect(this.value)' />
+                                  <img style="width: 75px;border:1px solid lightgray;height:70px;border-radius: 15px;" src="assets/img/redlink.jpg">
+                              </label>
+                          </div>
+                          <input type="hidden" id="presult">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="order-button-payment" id="bt">
+                      <input id='boton1' value='Acordar' type='submit'>
+                      <div class="boton-tarjetas" style="display: none;">
+                        <form action="procesar-pago.php" method="POST">
+                          <script
+                            src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
+                            data-public-key="TEST-1b30b32a-7cc1-4991-b60d-8d0cb7005877"
+                            data-transaction-amount="<?php echo $total; ?>">
+                          </script>
+                        </form>
+                      </div>
+                  </div>
                 </div>
+              </div>			  
             </div>
-        </div>			  
-              </div>
-			  </form>
-          </div>
         </div>
       </div>
-      <?php 
-        include("include/footer.php");
-      ?>
+    </div>
+
+    
+
+    <?php 
+      include("include/footer.php");
+    ?>
 		  
 		  
-      <div id="ro-backtop"><i class="icon-up"></i></div>
+    <div id="ro-backtop">
+      <i class="icon-up"></i>
+    </div>
+
     </div><!-- build:js vendors/vendors-compressed/plugins-min.js -->
     <script src='vendors/jquery/dist/jquery.min.js'></script>
     <script src='vendors/bootstrap/dist/js/bootstrap.min.js'></script>
@@ -451,21 +510,67 @@ if(empty($_REQUEST['idpedido'])){
     <script src='assets/scripts/main.js'></script>
 	  <script>
 
-  		function enviar(tipo){
+      $(document).ready(function() {
 
-  			if (tipo=='MP'){
+        $('#acordarVendedor').click(function(){
+          $('#medio').val('acordarVendedor');
+          $('#boton1').show();
+          $('.boton-tarjetas').hide();
+          $('#boton1').val('Acordar');
+        });
+        $('#mercadoPago').click(function(){
+          $('#medio').val('mercadoPago');
+          $('#boton1').show();
+          $('.boton-tarjetas').hide();
+          $('#boton1').val('Pagar');
+        });
+        $('#tarjetas').click(function(){
+          $('#medio').val('tarjetas');
+          $('#boton1').hide();
+          $('.boton-tarjetas').show();
+        });
+        $('#otrasPlataformas').click(function(){
+          $('#boton1').val('Pagar');
+          $('#boton1').show();
+          $('.boton-tarjetas').hide();
+          $('input[type=radio][name=otrospago]').change(function(){
+            $('#medio').val(this.value);
+          });
+        });
 
-  				$('#tipodepago').val('MP');
-
-  			} else {
-
-  				$('#tipodepago').val('ACORDAR');
-  			}
-
-  			$('#formulario').submit();
-  		}
+        $('#boton1').click(function(scope){
+          event.preventDefault();
+          switch ($('#medio').val()) {
+            case 'acordarVendedor':
+              console.log('acordar');
+              var mail = $('#mail').val(),
+                  nombre = $('#nombre').val();
+              $.post( "gestion/PHPMailer/mail.php", { mail: mail, nombre: nombre })
+                .done(function(){
+                  swal('Se ha notificado a nuestro equipo de tu compra. Te contactaremos a la brevedad.');
+                });
+              break;
+            case 'mercadoPago':
+              window.open($('#mercadopago').val(), '_self');
+              break;
+            case 'rapipago':
+            window.open($('#mercadopago').val(), '_self');
+              break;
+            case 'pagofacil':
+            window.open($('#mercadopago').val(), '_self');
+              break;
+            case 'provnet':
+            window.open($('#mercadopago').val(), '_self');
+              break;
+            case 'redlink':
+            window.open($('#mercadopago').val(), '_self');
+              break;
+          }
+        });
+      });
 
 	</script>
+
 	<!-- Acordion -->
 	  <script type="text/javascript"> 
 		  
@@ -485,6 +590,8 @@ if(empty($_REQUEST['idpedido'])){
         });
 
 	  </script>
+
+    <script src='node_modules/sweetalert/dist/sweetalert.min.js'></script>
 	
 	
     <!-- endbuild -->
